@@ -172,7 +172,7 @@ ion-icon {
   width: 100%;
   height: 0;
   background-color: firebrick;
-  background-image: url(/img/hero.jpg);
+  background-image: url(/passion-drama/img/hero.jpg);
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -431,7 +431,7 @@ https://css-tricks.com/easing-linear-gradients/
   width: 100;
   height: 0;
   padding-top: calc(100% * (9 / 16 * 0.75));
-  background-image: url(/img/hero.jpg);
+  background-image: url(/passion-drama/img/hero.jpg);
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
