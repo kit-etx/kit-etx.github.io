@@ -1,9 +1,9 @@
-@import './reset';
-@import './asset';
+@import "./reset";
+@import "./asset";
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol;
 
   background-color: black;
   color: white;
@@ -54,7 +54,7 @@ ion-icon {
   height: 0;
   background-color: firebrick;
 
-  background-image: url(/img/hero.jpg.webp);
+  background-image: url(/img/hero.jpg);
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -180,7 +180,7 @@ a {
   }
 }
 
-@import './nav';
+@import "./nav";
 
 .hero {
   position: relative;
@@ -189,21 +189,21 @@ a {
     height: 0;
     // padding-top: 56.25%;
     padding-top: calc(100% * (9 / 16 * 0.75));
-    background-image: url(/img/hero.jpg.webp);
+    background-image: url(/img/hero.jpg);
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
     // opacity: 0.8;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       // @include scrimGradient(black, "to top right");
-      @include scrimGradient(black, 'to right');
+      @include scrimGradient(black, "to right");
       opacity: 0.75;
       // z-index: -1;
     }
@@ -281,8 +281,8 @@ a {
     }
   }
 }
-@import './drama-cards';
-@import './preview-modal';
+@import "./drama-cards";
+@import "./preview-modal";
 
 .drama-footer {
   margin: 3em 0;
