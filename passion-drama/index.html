@@ -1,45 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hk">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/main.css" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no"
+    />
+    <title>熱血時報｜熱血劇集台</title>
+    <link rel="stylesheet" href="css/main.min.css" />
   </head>
   <body>
     <nav class="drama-nav" id="dramaNav">
       <div class="max-wrap">
         <div class="main">
-          <div class="logo"></div>
-          <!-- <ul class="catergory">
-            <li><a href="#tvDramaData">劇集</a></li>
-            <li><a href="#dramaData">劇場</a></li>
-            <li><a href="#standupData">棟篤笑</a></li>
-            <li><a href="#anniversaryData">台慶</a></li>
-            <li><a href="#concertData">演唱會</a></li>
-          </ul> -->
+          <a class="logo" href="#"></a>
 
-          <div class="back-to-pt">
-            <a href="#" target="_blank" class="pt-btn medium"
-              ><ion-icon name="open-outline"></ion-icon>熱血時報</a
-            >
-          </div>
+          <div class="nav-link" id="navLink">
+            <ul class="category">
+              <li><a href="#tvDrama">劇集</a></li>
+              <li><a href="#drama">劇場</a></li>
+              <li><a href="#standup">棟篤笑</a></li>
+              <li><a href="#anniversary">台慶</a></li>
+              <li><a href="#concert">演唱會</a></li>
+            </ul>
 
-          <div class="account">
-            <a href="#" target="_blank" class="pt-btn primary border"
-              >成為Prime會員</a
-            >
-            <a href="#" target="_blank" class="pt-btn primary fill">登入</a>
+            <div class="back-to-pt">
+              <a
+                href="https://www.passiontimes.hk/"
+                target="_blank"
+                class="pt-btn medium"
+                ><ion-icon name="open-outline"></ion-icon>熱血時報</a
+              >
+            </div>
+
+            <div class="account">
+              <a
+                href="https://www.passiontimes.hk/prime/"
+                target="_blank"
+                class="pt-btn primary border"
+                >成為Prime會員</a
+              >
+              <a
+                href="https://www.passiontimes.hk/prime/prime.php"
+                target="_blank"
+                class="pt-btn primary fill"
+                >登入</a
+              >
+            </div>
           </div>
+          <button class="pt-btn close-btn" id="menuToggle" aria-label="目錄">
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
         </div>
       </div>
     </nav>
 
     <main>
-      <section class="hero">
+      <section class="hero" aria-label="熱血推介">
         <div class="item">
-          <div class="img-box"></div>
+          <div class="img-box">
+            <div class="img-box-inner aspect-16-9_75"></div>
+          </div>
           <div class="text-box">
             <div class="max-wrap">
               <!-- <h2>獨腳刀</h2> -->
@@ -68,14 +90,18 @@
         </div>
       </section>
 
-      <section class="drama">
+      <section class="drama" aria-label="">
         <ul class="drama-wrap" id="dramaWrap"></ul>
       </section>
 
-      <section class="preview-modal" id="previewModal">
+      <section class="preview-modal" id="previewModal" aria-label="">
         <div class="modal-wrap">
           <div class="modal-content">
-            <button class="pt-btn modal-close" id="modalClose">
+            <button
+              class="pt-btn close-btn"
+              id="modalClose"
+              aria-label="返回主頁"
+            >
               <ion-icon name="close-outline"></ion-icon>
             </button>
             <header id="modalHeader"></header>
@@ -83,19 +109,35 @@
           </div>
         </div>
       </section>
+
+      <section class="video-player" id="videoPlayer" aria-label="多媒體播放器">
+        <button
+          class="pt-btn close-btn"
+          id="videoClose"
+          aria-label="關閉播放器"
+        >
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <!-- TODO: Next / Prev EP, Auto play next -->
+        <div class="video-wrap" id="videoWrap"></div>
+      </section>
     </main>
 
     <footer class="drama-footer">
       <div class="max-wrap">
         <div class="footer-sns">
           <a href="https://zh-tw.facebook.com/passiontimeshk" target="_blank"
-            ><ion-icon name="logo-facebook"></ion-icon></a>
+            ><ion-icon name="logo-facebook"></ion-icon
+          ></a>
           <a href="https://www.instagram.com/passiontimes/" target="_blank"
-            ><ion-icon name="logo-instagram"></ion-icon></a>
+            ><ion-icon name="logo-instagram"></ion-icon
+          ></a>
           <a href="https://twitter.com/Passiontimes" target="_blank"
-            ><ion-icon name="logo-twitter"></ion-icon></a>
+            ><ion-icon name="logo-twitter"></ion-icon
+          ></a>
           <a href="https://www.youtube.com/user/PassionTimesify" target="_blank"
-            ><ion-icon name="logo-youtube"></ion-icon></i></a>
+            ><ion-icon name="logo-youtube"></ion-icon
+          ></a>
         </div>
         <ul class="footer-links">
           <li><a href="/?view=disclaimer">免責聲明</a></li>
@@ -124,20 +166,26 @@
 
       // window.onload = function () {
 
+      const menuToggle = document.getElementById('menuToggle');
+      const navLink = document.getElementById('navLink');
+      menuToggle.addEventListener('click', () => {
+        console.log('menu toggle clicked');
+        navLink.classList.contains('active')
+          ? navLink.classList.remove('active')
+          : navLink.classList.add('active');
+      });
+
       const dramaWrap = document.getElementById('dramaWrap');
       const dramaCards = document.getElementById('dramaCards');
-      // const dramaCardArray = dramaCards.getElementsByTagName('li');
 
       const previewModal = document.getElementById('previewModal');
       const previewModalHeader = document.getElementById('modalHeader');
       const previewModalContent = document.getElementById('modalContent');
       const previewModalClose = document.getElementById('modalClose');
 
-      // for (let i = 0; i < 10; i++) {
-      //   let dramaItem = dramaCards.firstElementChild;
-      //   let dramaItemClone = dramaItem.cloneNode(true);
-      //   dramaCards.appendChild(dramaItemClone);
-      // }
+      const videoPlayer = document.getElementById('videoPlayer');
+      const videoWrap = document.getElementById('videoWrap');
+      const videoClose = document.getElementById('videoClose');
 
       let lastKnownScrollPosition = 0;
       let ticking = false;
@@ -174,62 +222,127 @@
         }
       }
 
+      let itemPrice = '';
+      let itemPriceCaption = '';
+      function getItemPrice(obj) {
+        const purchasable = Boolean(obj.price);
+        itemPrice = purchasable ? `HK$ ${obj.price.hkd}` : 'HK$ 120';
+        itemPriceCaption =
+          purchasable && obj.price.caption ? obj.price.caption : '';
+      }
+
       function printCategoryItems(dataArray) {
         let categoryName = '';
+        let categoryAnchor = '';
         switch (dataArray) {
           case tvDramaDataArray:
             categoryName = '劇集';
+            categoryAnchor = 'tvDrama';
             break;
           case dramaDataArray:
             categoryName = '劇場';
+            categoryAnchor = 'drama';
             break;
           case anniversaryDataArray:
             categoryName = '台慶';
+            categoryAnchor = 'anniversary';
             break;
           case concertDataArray:
             categoryName = '演唱會';
+            categoryAnchor = 'concert';
             break;
           case standupDataArray:
             categoryName = '棟篤笑';
+            categoryAnchor = 'standup';
             break;
           default:
             categoryName = '劇集';
+            categoryAnchor = 'tvDrama';
         }
 
         let cards = '';
+
         for (let i = 0; i < dataArray.length; i++) {
           for (var key in dramaData) {
             if (dramaData[key].id === dataArray[i]) {
               const obj = dramaData[key];
               let card = document.createElement('li');
 
+              getItemPrice(obj);
+
+              const itemYear = obj.year
+                ? `<time datetime="${obj.year}">${obj.year}</time>`
+                : '';
+
+              const itemTag = obj.tag
+                ? `．${outputWithSeparator(obj.tag)}`
+                : '';
+
               card = `<li class="drama-card" data-id="${obj.id}">
                 <a href="#">
-                  <div class="img-box"><div class="img-box-inner aspect-16-9"></div></div>
-                  <div class="text-box">
-                    <div class="content">
-                      <h3>${obj.title}</h3>
-                      <div class="caption">
-                        <time datetime="${obj.year}">${
-                obj.year
-              }</time>．${outputWithSeparator(obj.tag)}
-                      </div>
+                  <div class="img-box" data-title="${obj.title}">
+                    <div class="img-box-inner aspect-16-9"${
+                      obj.thumbnail
+                        ? ` style="background-image:url(${obj.thumbnail});" title="${obj.title}縮圖"`
+                        : ''
+                    }></div>
+                    ${
+                      obj.id === 18
+                        ? `<div class="card-badge new-release">新上架</div>`
+                        : ''
+                    }
+                    ${
+                      obj.id === 19
+                        ? `<div class="card-badge new-ep">每週更新</div>`
+                        : ''
+                    }
+                  </div>
+
+                  <div class="detail-box">
+                    <div class="img-box" aria-hidden="true" data-title="${
+                      obj.title
+                    }">
+                      <div class="img-box-inner aspect-16-9"${
+                        obj.thumbnail
+                          ? ` style="background-image:url(${obj.thumbnail});" title="${obj.title}縮圖"`
+                          : ''
+                      }></div>
                     </div>
-                    <div class="action">
+                    <div class="text-box">
+                      <div class="main">
+                        <div class="content">
+                          <h3>${obj.title}</h3>
+                          <div class="tag">${itemYear}${itemTag}</div>
+                        </div>
+                        <div class="action-btn">
+                          ${
+                            i % 3 === 0
+                              ? // Guest user (for drama that is for sale)
+                                `<button class="pt-btn no-gap buy-now">
+                                  <span class="price">${itemPrice}</span>
+                                  <span class="label">立即購買</span>
+                                </button>
+                                ${
+                                  obj.primeAccess
+                                    ? `<div class="free-for-prime">Prime會員免費</div>`
+                                    : ''
+                                }`
+                              : i % 3 === 1
+                              ? // Logged-in user without permission / Guest user (for drama that is not for sale)
+                                `<div class="prime-exclusive">Prime限定</div>`
+                              : // Logged-in user with permission (bought via PayPal / Prime User)
+                                `<button class="pt-btn play-now" aria-label="馬上收看">
+                                  <ion-icon name="play"></ion-icon>
+                                </button>`
+                          }
+                        </div>
+                      </div>
                       ${
-                        i % 3 === 0 // Logged-in user with permission (bought via PayPal / Prime User)
-                          ? `<button class="pt-btn play-now" aria-label="馬上收看">
-                              <ion-icon name="play"></ion-icon>
-                            </button>`
-                          : i % 3 === 1 // Logged-in user without permission / Guest user (for drama that is not for sale)
-                          ? `<div class="prime-exclusive">Prime限定</div>`
-                          : // Guest user (for drama that is for sale)
-                            `<button class="buy-now">
-                              <span class="price">HK$ 1020</span>
-                              <span class="label">立即購買</span>
-                            </button>
-                            <div class="caption">Prime會員免費</div>`
+                        itemPriceCaption
+                          ? `<div class="caption">${itemPriceCaption}</div>`
+                          : ''
                       }
+
                     </div>
                   </div>
                 </a>
@@ -244,14 +357,14 @@
         dramaWrap.insertAdjacentHTML(
           'beforeend',
           `<li class="max-wrap">
-          <header>
-            <h3>${categoryName}</h3>
-          </header>
-          <ul id="dramaCards" class="drama-cards">
-            ${cards}
-          </ul>
-        </li>
-        `
+            <div class="anchor" aria-hidden="true" id="${categoryAnchor}"></div>
+            <header>
+              <h3>${categoryName}</h3>
+            </header>
+            <ul id="dramaCards" class="drama-cards hide-scroll-bar">
+              ${cards}
+            </ul>
+          </li>`
         );
       }
 
@@ -303,7 +416,7 @@
         }
       });
 
-      const dramaCard = document.querySelectorAll('li.drama-card a');
+      const dramaCard = document.querySelectorAll('li.drama-card > a');
       dramaCard.forEach(function (card) {
         function dramaDetail() {
           const id = card.parentNode.getAttribute('data-id');
@@ -316,9 +429,13 @@
                 ? `<div class="subtitle">${obj.subtitle}</div>`
                 : '';
 
-              const dramaTitle = obj.title
-                ? `<div class="title">${obj.title}</div>`
-                : '';
+              const dramaTitle = obj.title ?? '';
+
+              const dramaFullTitle = dramaSubtitle
+                ? `${obj.subtitle}　${obj.title}`
+                : obj.title;
+
+              previewModal.setAttribute('aria-label', dramaFullTitle ?? '');
 
               const dramaDesc = obj.desc
                 ? `<div class="desc">${obj.desc}</div>`
@@ -378,18 +495,49 @@
                   ? `<div class="tag"><span>地點：</span>${obj.location}</div>`
                   : '';
 
+              getItemPrice(obj);
+
               previewModalHeader.innerHTML = '';
               previewModalHeader.insertAdjacentHTML(
                 'beforeend',
                 `<div class="img-box">
-                  <div class="img-box-inner aspect-16-6_75"></div>
+                  <div class="img-box-inner aspect-16-9_75"${
+                    obj.thumbnail
+                      ? ` style="background-image:url(${obj.thumbnail});"`
+                      : ''
+                  }></div>
                 </div>
                 <div class="feature">
                   ${dramaSubtitle}
-                  ${dramaTitle}
-                  <button class="pt-btn white lg fill">
-                    <ion-icon name="play"></ion-icon>播放
-                  </button>
+                  <div class="title">${dramaTitle}</div>
+                  <div class="action-btn">
+                    ${
+                      // Guest user (for drama that is for sale)
+                      `<button class="pt-btn white lg fill">
+                        <ion-icon name="play"></ion-icon>播放
+                      </button>`
+                    }
+                    ${
+                      // Logged-in user without permission / Guest user (for drama that is not for sale)
+                      `<button class="buy-now pt-btn no-gap lg">
+                        <span class="price">${itemPrice}</span>
+                        <span class="label">立即購買</span>
+                      </button>
+                      <div class="caption">
+                        ${
+                          itemPriceCaption
+                            ? `<span>${itemPriceCaption}</span>`
+                            : ''
+                        }
+                        <span class="free-for-prime">Prime會員免費</span>
+                      </div>`
+                    }
+
+                    ${
+                      // Logged-in user with permission (bought via PayPal / Prime User)
+                      `<div class="prime-exclusive pt-btn no-gap primary border">Prime限定</div>`
+                    }
+                  </div>
                 </div>
                 <div class="text-box">
                   <div class="main">
@@ -402,7 +550,7 @@
                       ${dramaTitleSponsor}
                       ${dramaTag}
                     </div>
-                    <a href="#metaDetail" class="view-more pt-btn white sm border pill">
+                    <a href="#metaDetail" id="metaDetailBtn" class="view-more pt-btn white sm border pill">
                       <ion-icon name="add"></ion-icon>更多資訊
                     </a>
                   </aside>
@@ -421,13 +569,18 @@
                   const epDesc = epData.desc
                     ? `<div class="desc">${epData.desc}</div>`
                     : '';
+                  const epSource = epData.source ? epData.source : '';
 
-                  const epContent = `<li class="">
-                    <a href="#" data-source="${obj.ep[key].source}">
+                  const epContent = `<li class="ep">
+                    <a href="#" data-id="${key}" data-source="${epSource}">
                       <div class="index">${key}</div>
                       <div class="img-box">
                         <div class="play-button"><ion-icon name="play"></ion-icon></div>
-                        <div class="img-box-inner aspect-16-9"></div>
+                        <div class="img-box-inner aspect-16-9"${
+                          epData.thumbnail
+                            ? ` style="background-image:url(${epData.thumbnail});"`
+                            : ''
+                        }></div>
                       </div>
                       <div class="text-box">
                         <div class="main">
@@ -450,7 +603,7 @@
                   </div>
                   <ul class="ep-list">${epList}</ul>
                   <footer>
-                    <div class="title">About ${obj.title}</div>
+                    <div class="title">關於《${dramaFullTitle}》</div>
                     <div class="meta" id="metaDetail">
                       ${dramaCast}
                       ${dramaCrew}
@@ -466,6 +619,39 @@
               openPreviewModal();
             }
           }
+
+          const epCardLinks = modalContent.querySelectorAll('li.ep > a');
+          epCardLinks.forEach(function (epCard) {
+            epCard.addEventListener('click', (e) => {
+              e.preventDefault();
+              const source = epCard.getAttribute('data-source');
+
+              videoWrap.innerHTML = '';
+              if (source && source !== '') {
+                videoWrap.insertAdjacentHTML(
+                  'beforeend',
+                  `<video autoplay controls>
+                    <source src="${source}" type="application/x-mpegURL">
+                    Your browser does not support the video tag.
+                    </video>`
+                );
+                videoPlayer.classList.add('active', 'fade-in');
+                videoClose.focus();
+              }
+            });
+          });
+
+          const metaDetailBtn = previewModal.querySelector('#metaDetailBtn');
+          // console.log(metaDetailBtn);
+          if (metaDetailBtn) {
+            metaDetailBtn.addEventListener('click', (e) => {
+              const metaDetail = previewModal.querySelector('#metaDetail');
+              metaDetail.classList.remove('focus');
+              setTimeout(function () {
+                metaDetail.classList.add('focus');
+              }, 10);
+            });
+          }
         }
 
         card.addEventListener('click', (e) => {
@@ -478,6 +664,24 @@
             dramaDetail();
           }
         });
+      });
+
+      function closeVideoPlayer() {
+        videoPlayer.classList.remove('fade-in');
+        videoPlayer.classList.add('fade-out');
+        videoPlayer.addEventListener(
+          'animationend',
+          () => {
+            videoPlayer.classList.remove('active', 'fade-out');
+            videoWrap.innerHTML = '';
+          },
+          { once: true }
+        );
+      }
+
+      videoClose.addEventListener('click', () => {
+        console.log('close video clicked');
+        closeVideoPlayer();
       });
 
       // openPreviewModal();
@@ -493,7 +697,9 @@
             case 'Esc': // IE/Edge specific value
             case 'Escape':
               // Do something for "esc" key press.
-              closePreviewModal();
+              videoPlayer.classList.contains('active')
+                ? closeVideoPlayer()
+                : closePreviewModal();
               break;
             default:
               return; // Quit when this doesn't handle the key event.
@@ -519,7 +725,7 @@
   </body>
 </html>
 
-<!-- 
+<!--
 /
 /drama <- display as modal on top of the index
 /drama#drama-1

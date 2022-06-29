@@ -1,8 +1,6 @@
-/*
-A simple little SCSS mixin for creating scrim gradients
-Inspired by Andreas Larson - https://github.com/larsenwork
-https://css-tricks.com/easing-linear-gradients/
-*/
+// A simple little SCSS mixin for creating scrim gradients
+// Inspired by Andreas Larson - https://github.com/larsenwork
+// https://css-tricks.com/easing-linear-gradients/
 
 @mixin scrimGradient($startColor: $color-black, $direction: 'to bottom') {
   $scrimCoordinates: (
@@ -28,7 +26,7 @@ https://css-tricks.com/easing-linear-gradients/
 
   @each $colorStop, $alphaValue in $scrimCoordinates {
     $stop: hsla($hue, $saturation, $lightness, $alphaValue)
-      percentage($colorStop/100);
+      percentage(calc($colorStop / 100));
     $stops: append($stops, $stop, comma);
   }
 
@@ -70,4 +68,7 @@ https://css-tricks.com/easing-linear-gradients/
 }
 @mixin fixed($args...) {
   @include position(fixed, $args...);
+}
+@mixin sticky($args...) {
+  @include position(sticky, $args...);
 }

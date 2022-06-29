@@ -1,0 +1,36 @@
+.drama-footer {
+  margin: 3em 0;
+  .max-wrap > * {
+    gap: 1em;
+    font-size: 0.75em;
+    &,
+    a {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .max-wrap > * ~ * {
+    margin-top: 1em;
+  }
+  .footer-sns {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+  }
+  .footer-links,
+  .footer-copyright {
+    color: var(--pt-gray-400);
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    }
+  }
+  // .footer-links {
+  // }
+  // .footer-copyright {
+  // }
+}
