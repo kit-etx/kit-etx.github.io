@@ -366,7 +366,7 @@
         // category link for future use: <a href="#"><span>查看更多</span><ion-icon name="chevron-forward-outline"></ion-icon></a>
         dramaWrap.insertAdjacentHTML(
           'beforeend',
-          `<li class="max-wrap">
+          `<li class="max-wrap hide-scroll-bar">
             <div class="anchor" aria-hidden="true" id="${categoryAnchor}"></div>
             <header>
               <h3>${categoryName}</h3>
@@ -517,8 +517,8 @@
                 'beforeend',
                 `<div class="img-box">
                   <div class="img-box-inner aspect-16-9_75"${
-                    obj.thumbnail
-                      ? ` style="background-image:url(${obj.thumbnail});"`
+                    obj.coverImage
+                      ? ` style="background-image:url(${obj.coverImage});"`
                       : ''
                   }></div>
                 </div>
@@ -528,7 +528,7 @@
                   <div class="action-btn">
                     ${
                       // Guest user (for drama that is for sale)
-                      `<button class="pt-btn white lg fill">
+                      `<button class="pt-btn white lg fill" id="modalPlayNow">
                         <ion-icon name="play"></ion-icon>播放
                       </button>`
                     }
@@ -643,6 +643,14 @@
               setupVideoPlayer(source);
             });
           });
+
+          const modalPlayNow = previewModal.querySelector('#modalPlayNow');
+          if (modalPlayNow) {
+            modalPlayNow.addEventListener('click', (e) => {
+              const source = epCardLinks[0].getAttribute('data-source');
+              setupVideoPlayer(source);
+            });
+          }
 
           const metaDetailBtn = previewModal.querySelector('#metaDetailBtn');
           // console.log(metaDetailBtn);

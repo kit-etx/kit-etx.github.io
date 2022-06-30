@@ -259,11 +259,12 @@
         flex: 3;
         max-width: 240px;
         border-radius: 0.125em;
+        background-color: hsla(0, 0%, 100%, 0.1);
         .play-button {
           display: flex;
           align-items: center;
           justify-content: center;
-          @include absolute(0, 0, 0, 0, 1);
+          @include absolute(0, 0, 0, 0, 2);
           width: 4em;
           height: 4em;
           margin: auto;

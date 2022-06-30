@@ -110,12 +110,36 @@ body {
   }
 }
 
+.drama {
+  overflow: hidden;
+}
 .drama-wrap {
   padding: 1em 0;
+
+  // > li {
+  //   overflow: hidden;
+  // }
+  // .drama-cards {
+  //   overflow-x: scroll;
+  //   overflow-y: visible;
+
+  //   scroll-snap-type: mandatory;
+  //   scroll-snap-points-y: repeat(25em);
+  //   scroll-snap-type: x mandatory;
+
+  //   > li {
+  //     scroll-snap-align: start;
+  //     margin-top: -5em;
+  //     padding-top: 5em;
+  //     padding-bottom: 5em;
+  //   }
+  // }
   > li + li {
     margin-top: 1em;
   }
   header {
+    position: sticky;
+    left: 0;
     display: flex;
     align-items: center;
     gap: 0.5em;
