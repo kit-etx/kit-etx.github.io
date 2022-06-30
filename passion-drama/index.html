@@ -95,35 +95,31 @@
       <section class="drama" aria-label="">
         <ul class="drama-wrap" id="dramaWrap"></ul>
       </section>
-
-      <section class="preview-modal" id="previewModal" aria-label="">
-        <div class="modal-wrap">
-          <div class="modal-content">
-            <button
-              class="pt-btn close-btn"
-              id="modalClose"
-              aria-label="返回主頁"
-            >
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-            <header id="modalHeader"></header>
-            <div class="content" id="modalContent"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="video-player" id="videoPlayer" aria-label="多媒體播放器">
-        <button
-          class="pt-btn close-btn"
-          id="videoClose"
-          aria-label="關閉播放器"
-        >
-          <ion-icon name="close-outline"></ion-icon>
-        </button>
-        <!-- TODO: Next / Prev EP, Auto play next -->
-        <div class="video-wrap" id="videoWrap"></div>
-      </section>
     </main>
+
+    <section class="preview-modal" id="previewModal" aria-label="">
+      <div class="modal-wrap">
+        <div class="modal-content">
+          <button
+            class="pt-btn close-btn"
+            id="modalClose"
+            aria-label="返回主頁"
+          >
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <header id="modalHeader"></header>
+          <div class="content" id="modalContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-player" id="videoPlayer" aria-label="多媒體播放器">
+      <button class="pt-btn close-btn" id="videoClose" aria-label="關閉播放器">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <!-- TODO: Next / Prev EP, Auto play next -->
+      <div class="video-wrap" id="videoWrap"></div>
+    </section>
 
     <footer class="drama-footer">
       <div class="max-wrap">
@@ -168,6 +164,7 @@
 
       const menuToggle = document.getElementById('menuToggle');
       const navLink = document.getElementById('navLink');
+      const navLinkA = navLink.querySelectorAll('a');
       menuToggle.addEventListener('click', () => {
         // console.log('menu toggle clicked');
         navLink.classList.contains('active')
@@ -182,6 +179,11 @@
         document.body.classList.remove('freeze');
         navLink.classList.remove('active');
       }
+      navLinkA.forEach(function (link) {
+        link.addEventListener('click', () => {
+          navLink.classList.contains('active') ? closeMenuToggle() : '';
+        });
+      });
 
       const dramaWrap = document.getElementById('dramaWrap');
       const dramaCards = document.getElementById('dramaCards');
