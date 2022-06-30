@@ -30,6 +30,7 @@ body {
   }
 }
 
+.menu-btn,
 .close-btn {
   justify-content: center;
   @include absolute(0, 0, null, null, 2);
@@ -56,7 +57,7 @@ body {
   .img-box {
     &::after {
       content: '';
-      @include absolute(0, 0, 0, 0);
+      @include absolute(0, 0, 0, 0, 1);
       @include scrimGradient(black, 'to right');
       opacity: 0.75;
     }

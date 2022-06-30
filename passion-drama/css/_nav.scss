@@ -21,7 +21,8 @@
     font-size: 1em;
     // background-color: aliceblue;
     border-radius: 0.125em;
-    transition: all 0.2s ease;
+    transition: 0.2s ease;
+    transition-property: color, background-color, outline, border;
     outline-offset: 0.5em;
 
     &:focus {
@@ -30,29 +31,25 @@
     }
   }
 
-  .back-to-pt {
-    margin-left: auto;
-    // margin-bottom: 0.5em;
-    a {
-      display: inline-flex;
-      // align-items: center;
-      // gap: 0.25em;
-      // padding: 0.5em 1em;
-      // font-size: 0.75em;
-      color: var(--pt-gray-100);
-      // background: var(--pt-gray-900);
-      // ion-icon {
-      // }
-    }
-  }
-
   .main,
-  .nav-link {
+  .nav-link-inner {
     display: flex;
     align-items: center;
     gap: 1em;
     flex: 1;
     // background-color: bisque;
+  }
+
+  .nav-link {
+    flex: 1;
+    .back-to-pt {
+      margin-left: auto;
+      a {
+        display: inline-flex;
+        background-color: transparent;
+        // color: var(--pt-gray-100);
+      }
+    }
   }
 
   .logo {
@@ -69,28 +66,21 @@
   .account {
     display: flex;
     gap: 1em;
-    // margin-left: auto;
-    // margin-right: 0;
-    // align-self: flex-end;
     a {
-      // border: 1px solid var(--pt-yellow-400);
-      // color: var(--pt-yellow-400);
       font-size: 1.125em;
-      // font-weight: 500;
-      // color: black;
-      // background: var(--pt-yellow-400);
     }
   }
 
   .category {
     a {
-      color: var(--pt-gray-100);
+      // color: var(--pt-gray-100);
+      color: white;
 
-      &:hover,
-      &:focus {
-        // color: var(--pt-gray-50);
-        color: white;
-      }
+      // &:hover,
+      // &:focus {
+      //   // color: var(--pt-gray-50);
+      //   color: white;
+      // }
       &:hover {
         // color: var(--pt-yellow-400);
         background: var(--pt-gray-900);
@@ -98,26 +88,94 @@
     }
   }
 
-  .close-btn {
+  .menu-btn {
     display: none;
+    top: 0.25em;
+    // right: 0.25em;
+    z-index: 102;
+    pointer-events: auto;
+    user-select: auto;
+    // outline: 1px solid lime;
+  }
+  &.scrolled {
+    .menu-btn {
+      background-color: transparent;
+      backdrop-filter: none;
+    }
   }
   @media only screen and (max-width: 1024px) {
     .nav-link {
-      display: none;
-      &.active {
+      // display: none;
+      display: block;
+      overflow-y: scroll;
+      @include fixed(0, 0, null, 0, 101);
+      width: 100%;
+      height: 100vh;
+      transition: 0.2s ease;
+      transition-property: opacity, transform;
+      background: #000;
+      opacity: 0;
+
+      user-select: none;
+      pointer-events: none;
+      visibility: hidden;
+
+      .nav-link-inner {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        @include fixed(0, 0, null, 0, 101);
-        height: 100vh;
-        padding: 1em;
-        background: #000;
+        gap: 2em;
+        @include absolute(0, 0, null, 0);
+        min-height: 100vh;
+        width: 100%;
+        padding: 2em;
+        font-size: 125%;
+
+        transition: all 0.2s ease;
+        transform: translateY(1em);
+      }
+
+      .category {
+        // outline: 1px solid lime;
+        flex-direction: column;
+      }
+      .back-to-pt {
+        // outline: 1px solid lime;
+        // margin-top: 0.25em;
+        margin-top: 0.5em;
+        margin-left: 0.25em;
+        @include fixed(0, null, null, 0);
+        a {
+          gap: 0.25em;
+          margin: 0.875em;
+          padding: 0.5em 1em;
+          font-size: 0.75em;
+          border-radius: 0.25em;
+        }
+      }
+      .account {
+        // outline: 1px solid lime;
+        text-align: center;
+        flex-direction: column;
+        a {
+          font-size: 1em;
+        }
+      }
+
+      &.active {
+        pointer-events: auto;
+        user-select: auto;
+        visibility: visible;
+        opacity: 1;
+
+        .nav-link-inner {
+          transform: translateY(0);
+        }
       }
     }
-    .close-btn {
+    .menu-btn {
       display: flex;
-      z-index: 102;
     }
   }
 }

@@ -17,39 +17,41 @@
           <a class="logo" href="#"></a>
 
           <div class="nav-link" id="navLink">
-            <ul class="category">
-              <li><a href="#tvDrama">劇集</a></li>
-              <li><a href="#drama">劇場</a></li>
-              <li><a href="#standup">棟篤笑</a></li>
-              <li><a href="#anniversary">台慶</a></li>
-              <li><a href="#concert">演唱會</a></li>
-            </ul>
+            <div class="nav-link-inner">
+              <ul class="category">
+                <li><a href="#tvDrama">劇集</a></li>
+                <li><a href="#drama">劇場</a></li>
+                <li><a href="#standup">棟篤笑</a></li>
+                <li><a href="#anniversary">台慶</a></li>
+                <li><a href="#concert">演唱會</a></li>
+              </ul>
 
-            <div class="back-to-pt">
-              <a
-                href="https://www.passiontimes.hk/"
-                target="_blank"
-                class="pt-btn medium"
-                ><ion-icon name="open-outline"></ion-icon>熱血時報</a
-              >
-            </div>
+              <div class="back-to-pt">
+                <a
+                  href="https://www.passiontimes.hk/"
+                  target="_blank"
+                  class="pt-btn medium fill"
+                  ><ion-icon name="open-outline"></ion-icon>熱血時報</a
+                >
+              </div>
 
-            <div class="account">
-              <a
-                href="https://www.passiontimes.hk/prime/"
-                target="_blank"
-                class="pt-btn primary border"
-                >成為Prime會員</a
-              >
-              <a
-                href="https://www.passiontimes.hk/prime/prime.php"
-                target="_blank"
-                class="pt-btn primary fill"
-                >登入</a
-              >
+              <div class="account">
+                <a
+                  href="https://www.passiontimes.hk/prime/"
+                  target="_blank"
+                  class="pt-btn primary border"
+                  >成為Prime會員</a
+                >
+                <a
+                  href="https://www.passiontimes.hk/prime/prime.php"
+                  target="_blank"
+                  class="pt-btn primary fill"
+                  >登入</a
+                >
+              </div>
             </div>
           </div>
-          <button class="pt-btn close-btn" id="menuToggle" aria-label="目錄">
+          <button class="pt-btn menu-btn" id="menuToggle" aria-label="目錄">
             <ion-icon name="menu-outline"></ion-icon>
           </button>
         </div>
@@ -164,16 +166,22 @@
       const concertDataArray = [13, 7];
       const standupDataArray = [12, 10, 9];
 
-      // window.onload = function () {
-
       const menuToggle = document.getElementById('menuToggle');
       const navLink = document.getElementById('navLink');
       menuToggle.addEventListener('click', () => {
-        console.log('menu toggle clicked');
+        // console.log('menu toggle clicked');
         navLink.classList.contains('active')
-          ? navLink.classList.remove('active')
-          : navLink.classList.add('active');
+          ? closeMenuToggle()
+          : openMenuToggle();
       });
+      function openMenuToggle() {
+        document.body.classList.add('freeze');
+        navLink.classList.add('active');
+      }
+      function closeMenuToggle() {
+        document.body.classList.remove('freeze');
+        navLink.classList.remove('active');
+      }
 
       const dramaWrap = document.getElementById('dramaWrap');
       const dramaCards = document.getElementById('dramaCards');
@@ -279,7 +287,7 @@
                 : '';
 
               card = `<li class="drama-card" data-id="${obj.id}">
-                <a href="#">
+                <a href="#" aria-label="${obj.title}">
                   <div class="img-box" data-title="${obj.title}">
                     <div class="img-box-inner aspect-16-9"${
                       obj.thumbnail
@@ -374,6 +382,7 @@
       printCategoryItems(anniversaryDataArray);
       printCategoryItems(concertDataArray);
 
+      let lastOpenedItem = null;
       function openPreviewModal() {
         document.body.classList.add('freeze');
         previewModal.classList.add('active', 'fade-in');
@@ -391,6 +400,9 @@
           },
           { once: true }
         );
+        if (lastOpenedItem !== null) {
+          lastOpenedItem.focus();
+        }
       }
 
       previewModal.addEventListener('click', (e) => {
@@ -420,6 +432,7 @@
       dramaCard.forEach(function (card) {
         function dramaDetail() {
           const id = card.parentNode.getAttribute('data-id');
+          lastOpenedItem = card;
 
           for (var key in dramaData) {
             let obj = dramaData[key];
@@ -625,19 +638,7 @@
             epCard.addEventListener('click', (e) => {
               e.preventDefault();
               const source = epCard.getAttribute('data-source');
-
-              videoWrap.innerHTML = '';
-              if (source && source !== '') {
-                videoWrap.insertAdjacentHTML(
-                  'beforeend',
-                  `<video autoplay controls>
-                    <source src="${source}" type="application/x-mpegURL">
-                    Your browser does not support the video tag.
-                    </video>`
-                );
-                videoPlayer.classList.add('active', 'fade-in');
-                videoClose.focus();
-              }
+              setupVideoPlayer(source);
             });
           });
 
@@ -666,6 +667,22 @@
         });
       });
 
+      function setupVideoPlayer(source) {
+        if (source && source !== '') {
+          videoWrap.innerHTML = '';
+          videoWrap.insertAdjacentHTML(
+            'beforeend',
+            `<video autoplay controls>
+              <source src="${source}" type="application/x-mpegURL">
+              Your browser does not support the video tag.
+            </video>`
+          );
+          videoPlayer.classList.add('active', 'fade-in');
+          videoClose.focus();
+        } else {
+          return;
+        }
+      }
       function closeVideoPlayer() {
         videoPlayer.classList.remove('fade-in');
         videoPlayer.classList.add('fade-out');
@@ -697,6 +714,8 @@
             case 'Esc': // IE/Edge specific value
             case 'Escape':
               // Do something for "esc" key press.
+              navLink.classList.contains('active') ? closeMenuToggle() : '';
+
               videoPlayer.classList.contains('active')
                 ? closeVideoPlayer()
                 : closePreviewModal();
@@ -710,7 +729,6 @@
         },
         true
       );
-      // };
     </script>
 
     <!-- ion-icon -->

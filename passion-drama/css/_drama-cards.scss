@@ -1,4 +1,5 @@
 .drama-cards {
+  --border-radius: 0.25em;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1em;
@@ -32,20 +33,43 @@
     //   transform-origin: left center;
     // }
 
-    &:focus-within {
-      .detail-box {
+    // @media not all and (hover: hover) and (max-width: 1023px) {
+    // @media not all and (hover: hover) {
+    @media (max-width: 1023px) {
+      --border-radius: 0.125em;
+      border-radius: var(--border-radius);
+
+      &:focus,
+      &:focus-within {
         outline: 2px solid var(--pt-yellow-400);
         outline-offset: 0.25em;
       }
-    }
-    &:hover,
-    &:focus-within {
-      z-index: 2;
       .detail-box {
-        opacity: 1;
-        transform: scale(1.1) translateY(0%);
+        display: none;
       }
     }
+    // }
+
+    @media (hover: hover) and (min-width: 1024px) {
+      .detail-box {
+        display: block;
+      }
+      &:focus-within {
+        .detail-box {
+          outline: 2px solid var(--pt-yellow-400);
+          outline-offset: 0.25em;
+        }
+      }
+      &:hover,
+      &:focus-within {
+        z-index: 2;
+        .detail-box {
+          opacity: 1;
+          transform: scale(1.1) translateY(0%);
+        }
+      }
+    }
+
     a {
       display: block;
       width: 100%;
@@ -53,12 +77,12 @@
         outline: none;
       }
       > .img-box {
-        border-radius: 0.25em;
+        border-radius: var(--border-radius);
       }
     }
 
     .img-box {
-      border-radius: 0.25em;
+      border-radius: var(--border-radius);
       &::before {
         user-select: none;
         pointer-events: none;
@@ -78,6 +102,12 @@
       }
     }
 
+    // .img-box-inner{
+    //   @media  (max-width: 1023px) {
+
+    //   }
+    // }
+
     .card-badge {
       @include absolute(auto, 0, 0, 0, 1);
       width: fit-content;
@@ -89,8 +119,8 @@
       background-color: hsla(0, 0%, 100%, 0.875);
       color: black;
       backdrop-filter: blur(1em);
-      border-radius: 0.25em;
-      box-shadow: 0 0.125em 0.25em hsla(0, 0%, 0%, 0.5),
+      border-radius: var(--border-radius);
+      box-shadow: 0 var(--border-radius) 0.25em hsla(0, 0%, 0%, 0.5),
         0 0.25em 0.5em hsla(0, 0%, 0%, 0.1);
     }
 
@@ -101,7 +131,7 @@
       height: min-content;
       background-color: var(--card-bg);
       opacity: 0;
-      border-radius: calc(0.25em / 1.1);
+      border-radius: calc(var(--border-radius) / 1.1);
       outline-offset: 0.5em;
       transition: all 0.2s ease;
       transform: scale(1) translateY(1em);

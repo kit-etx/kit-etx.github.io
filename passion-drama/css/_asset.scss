@@ -228,7 +228,7 @@ a {
       color: white;
       &.transparent {
         background-color: hsla(0, 0%, 100%, 0.25);
-        backdrop-filter: blur(2px);
+        backdrop-filter: blur(1em);
       }
     }
     &.border {
