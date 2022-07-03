@@ -65,9 +65,7 @@
 }
 
 .max-wrap {
-  --px: 3em;
-  --py: 1em;
-  padding: var(--py) var(--px);
+  padding: var(--max-wrap-py) var(--max-wrap-px);
   &.max-x {
     padding-top: 0;
     padding-bottom: 0;
@@ -75,18 +73,6 @@
   &.max-y {
     padding-left: 0;
     padding-right: 0;
-  }
-  @media only screen and (max-width: 1280px) {
-    --px: 2.5em;
-  }
-  @media only screen and (max-width: 1024px) {
-    --px: 2em;
-  }
-  @media only screen and (max-width: 768px) {
-    --px: 1.5em;
-  }
-  @media only screen and (max-width: 568px) {
-    --px: 1em;
   }
 }
 

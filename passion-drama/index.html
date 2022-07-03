@@ -14,7 +14,7 @@
     <nav class="drama-nav" id="dramaNav">
       <div class="max-wrap">
         <div class="main">
-          <a class="logo" href="#"></a>
+          <a class="logo" href="#" title="熱血劇集台"></a>
 
           <div class="nav-link" id="navLink">
             <div class="nav-link-inner">
@@ -366,17 +366,25 @@
         // category link for future use: <a href="#"><span>查看更多</span><ion-icon name="chevron-forward-outline"></ion-icon></a>
         dramaWrap.insertAdjacentHTML(
           'beforeend',
-          `<li class="max-wrap hide-scroll-bar">
+          `<li>
             <div class="anchor" aria-hidden="true" id="${categoryAnchor}"></div>
             <header>
               <h3>${categoryName}</h3>
+              <div class="btn-wrap">
+                <button class="prev" aria-hidden="true" tabindex="-1"><ion-icon name="chevron-back-outline"></ion-icon></button>
+                <button class="next" aria-hidden="true" tabindex="-1"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+              </div>
             </header>
             <ul id="dramaCards" class="drama-cards hide-scroll-bar">
               ${cards}
+              <!-- End-padding fix -->
+              <li class="drama-card padding-fix" aria-hidden="true"></li>
             </ul>
           </li>`
         );
       }
+      // <button class="prev" aria-hidden="true" tabindex="-1"><ion-icon name="chevron-back-outline"></ion-icon></button>
+      // <button class="next" aria-hidden="true" tabindex="-1"><ion-icon name="chevron-forward-outline"></ion-icon></button>
 
       printCategoryItems(tvDramaDataArray);
       printCategoryItems(dramaDataArray);
