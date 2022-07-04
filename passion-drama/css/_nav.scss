@@ -16,7 +16,7 @@
   }
 
   a {
-    display: inline-block;
+    display: inline-flex;
     padding: 0.5em 0.75em;
     font-size: 1em;
     // background-color: aliceblue;
@@ -66,10 +66,31 @@
 
   .account {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1em;
-    a {
-      font-size: 1.125em;
+    // a {
+    //   font-size: 1.125em;
+    // }
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    ion-icon {
+      @include absolute(0, 0, 0, 0, 1);
+      margin: auto;
+      font-size: 1.25em;
+      opacity: 0.5;
     }
+  }
+  .avatar {
+    width: 2.5em;
+    border-radius: 999rem;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    // background-color: lime;
   }
 
   .category {

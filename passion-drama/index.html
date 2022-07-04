@@ -14,7 +14,7 @@
     <nav class="drama-nav" id="dramaNav">
       <div class="max-wrap">
         <div class="main">
-          <a class="logo" href="#"></a>
+          <a class="logo" href="#" title="熱血劇集台"></a>
 
           <div class="nav-link" id="navLink">
             <div class="nav-link-inner">
@@ -30,7 +30,7 @@
                 <a
                   href="https://www.passiontimes.hk/"
                   target="_blank"
-                  class="pt-btn medium fill"
+                  class="pt-btn medium"
                   ><ion-icon name="open-outline"></ion-icon>熱血時報</a
                 >
               </div>
@@ -47,6 +47,21 @@
                   target="_blank"
                   class="pt-btn primary fill"
                   >登入</a
+                >
+
+                <div class="user">
+                  <div class="avatar img-box">
+                    <div class="img-box-inner aspect-1-1"></div>
+                    <ion-icon name="person-outline"></ion-icon>
+                  </div>
+                  <div class="name">美羅昆德拉</div>
+                </div>
+
+                <a
+                  href="https://www.passiontimes.hk/"
+                  target="_blank"
+                  class="pt-btn medium"
+                  ><ion-icon name="log-out-outline"></ion-icon>登出</a
                 >
               </div>
             </div>
@@ -154,6 +169,14 @@
     <script type="text/javascript" src="data.js"></script>
 
     <script type="text/javascript">
+      let windowHeight = window.innerHeight;
+      let windowWidth = window.innerWidth;
+      function updateWindowDimensions() {
+        windowHeight = window.innerHeight;
+        windowWidth = window.innerWidth;
+      }
+      window.onresize = updateWindowDimensions;
+
       const dramaData = data;
 
       const tvDramaDataArray = [19];
@@ -186,7 +209,6 @@
       });
 
       const dramaWrap = document.getElementById('dramaWrap');
-      const dramaCards = document.getElementById('dramaCards');
 
       const previewModal = document.getElementById('previewModal');
       const previewModalHeader = document.getElementById('modalHeader');
@@ -366,14 +388,20 @@
         // category link for future use: <a href="#"><span>查看更多</span><ion-icon name="chevron-forward-outline"></ion-icon></a>
         dramaWrap.insertAdjacentHTML(
           'beforeend',
-          `<li class="max-wrap hide-scroll-bar">
+          `<li data-category="${categoryAnchor}">
             <div class="anchor" aria-hidden="true" id="${categoryAnchor}"></div>
             <header>
               <h3>${categoryName}</h3>
             </header>
-            <ul id="dramaCards" class="drama-cards hide-scroll-bar">
+            <ul class="drama-cards hide-scroll-bar">
               ${cards}
+              <!-- End-padding fix -->
+              <li class="drama-card padding-fix" aria-hidden="true"></li>
             </ul>
+            <div class="scroll-arrow-wrap" id="scroll_${categoryAnchor}" aria-hidden="true">
+              <button class="prev" tabindex="-1"><ion-icon name="chevron-back-outline"></ion-icon></button>
+              <button class="next" tabindex="-1"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+            </div>
           </li>`
         );
       }
@@ -428,6 +456,80 @@
 
           ticking = true;
         }
+      });
+
+      const scrollArrowWrap = document.querySelectorAll('.scroll-arrow-wrap');
+      scrollArrowWrap.forEach(function (arrowWrap) {
+        const cardContainer = arrowWrap.parentNode;
+        const cardWrap = cardContainer.querySelector('ul.drama-cards');
+        const cardWrapPaddingLeft = parseInt(
+          window
+            .getComputedStyle(cardWrap, null)
+            .getPropertyValue('padding-left'),
+          10
+        );
+        const prevBtn = cardContainer.querySelector('button.prev');
+        const nextBtn = cardContainer.querySelector('button.next');
+
+        const cards = cardWrap.children;
+        let scrollPos = cardWrap.scrollLeft;
+        let totalWidth = 0;
+
+        for (let i = 0; i < cards.length - 1; i++) {
+          totalWidth += parseInt(cards[i].offsetWidth, 10);
+          if (i > 0 && i < cards.length - 1) {
+            totalWidth += 16; // 1em
+          }
+        }
+
+        function toggleArrowWrapDisplay() {
+          if (totalWidth > windowWidth) {
+            arrowWrap.classList.add('active');
+          }
+        }
+        function toggleArrowDisplay() {
+          scrollPos = cardWrap.scrollLeft;
+          if (scrollPos <= 0) {
+            arrowWrap.classList.remove('prev');
+          } else {
+            arrowWrap.classList.add('prev');
+          }
+          if (
+            scrollPos + (cardWrap.offsetWidth - cardWrapPaddingLeft * 2) >=
+            totalWidth
+          ) {
+            arrowWrap.classList.remove('next');
+          } else {
+            arrowWrap.classList.add('next');
+          }
+        }
+
+        window.addEventListener('load', (e) => {
+          toggleArrowWrapDisplay();
+          toggleArrowDisplay();
+        });
+        window.addEventListener('resize', (e) => {
+          arrowWrap.classList.remove('prev', 'next');
+          toggleArrowWrapDisplay();
+          toggleArrowDisplay();
+        });
+        cardWrap.addEventListener('scroll', (e) => {
+          toggleArrowDisplay();
+        });
+
+        prevBtn.onclick = function (e) {
+          cardWrap.scrollTo({
+            left: scrollPos - cardWrap.offsetWidth - cardWrapPaddingLeft * 2,
+            behavior: 'smooth',
+          });
+        };
+        nextBtn.onclick = function (e) {
+          console.log('click');
+          cardWrap.scrollTo({
+            left: scrollPos + cardWrap.offsetWidth - cardWrapPaddingLeft * 2,
+            behavior: 'smooth',
+          });
+        };
       });
 
       const dramaCard = document.querySelectorAll('li.drama-card > a');

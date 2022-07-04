@@ -1,4 +1,19 @@
 :root {
+  --max-wrap-px: 3em;
+  --max-wrap-py: 1em;
+  @media only screen and (max-width: 1280px) {
+    --max-wrap-px: 2.5em;
+  }
+  @media only screen and (max-width: 1024px) {
+    --max-wrap-px: 2em;
+  }
+  @media only screen and (max-width: 768px) {
+    --max-wrap-px: 1.5em;
+  }
+  @media only screen and (max-width: 568px) {
+    --max-wrap-px: 1em;
+  }
+
   --card-bg: hsl(0, 0%, 10%);
   --card-px: 2em;
   --card-py: 1em;

@@ -110,40 +110,40 @@ body {
   }
 }
 
-.drama {
-  overflow: hidden;
-}
+// .drama {
+//   overflow: hidden;
+// }
 .drama-wrap {
-  padding: 1em 0;
-
-  // > li {
-  //   overflow: hidden;
-  // }
-  // .drama-cards {
-  //   overflow-x: scroll;
-  //   overflow-y: visible;
-
-  //   scroll-snap-type: mandatory;
-  //   scroll-snap-points-y: repeat(25em);
-  //   scroll-snap-type: x mandatory;
-
-  //   > li {
-  //     scroll-snap-align: start;
-  //     margin-top: -5em;
-  //     padding-top: 5em;
-  //     padding-bottom: 5em;
-  //   }
-  // }
-  > li + li {
-    margin-top: 1em;
+  padding: 3em 0;
+  > li {
+    position: relative;
+    // margin-bottom: 3em;
+    // &:last-child {
+    //   margin-bottom: 0;
+    // }
+    // outline: 1px solid firebrick;
+    // background: hsla(0, 100%, 62%, 0.2);
+    // &:nth-child(even) {
+    //   background: hsla(100, 100%, 62%, 0.2);
+    // }
   }
+  // > li + li {
+  //   margin-top: 3em;
+  // }
+
   header {
-    position: sticky;
-    left: 0;
+    position: relative;
+    z-index: 1;
+    // position: sticky;
+    // left: 0;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.5em;
-    padding: 1em 0;
+
+    margin-bottom: -7em;
+    padding: 1em var(--max-wrap-px);
+
     h3,
     a {
       display: inline-flex;
@@ -161,6 +161,114 @@ body {
       // }
       // ion-icon {
       // }
+    }
+
+    // .btn-wrap {
+    //   display: flex;
+    //   gap: 0.5em;
+    //   button {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     width: 2em;
+    //     height: 2em;
+    //   }
+    //   // &.prev {
+    //   // }
+    //   // &.next {
+    //   // }
+    //   ion-icon {
+    //     font-size: 1.5em;
+    //     opacity: 0.5;
+    //   }
+    // }
+  }
+
+  .scroll-arrow-wrap {
+    button {
+      @include absolute(3.625em, auto, 7em, auto, 2);
+      // @include absolute(4.625em, auto, 8em, auto, 2);
+      transition: all 0.2s ease;
+      // border-radius: 0.25em;
+      // background-color: aqua;
+      background-color: hsla(0, 0%, 0%, 0.5);
+      // backdrop-filter: blur(3em);
+      &:hover {
+        background-color: hsla(0, 0%, 0%, 0.75);
+        // background-color: lime;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 5em;
+      // height: 3em;
+      margin: auto;
+      opacity: 0;
+      pointer-events: none;
+
+      // &::before {
+      //   content: " ";
+      //   @include absolute(-3em, 0, -3em, 0, -1);
+      //   background-color: aquamarine;
+      // }
+
+      &.prev {
+        left: 0;
+        // &::before {
+        //   right: -2em;
+        //   @include scrimGradient(black, 'to right');
+        // }
+        ion-icon {
+          margin-left: -0.125em;
+        }
+      }
+      &.next {
+        right: 0;
+        // &::before {
+        //   left: -2em;
+        //   @include scrimGradient(black, 'to left');
+        // }
+        ion-icon {
+          margin-right: -0.125em;
+        }
+      }
+      ion-icon {
+        font-size: 3em;
+        // opacity: 0.75;
+      }
+    }
+  }
+
+  .scroll-arrow-wrap {
+    margin-bottom: -4em;
+    user-select: none;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .drama-cards {
+      pointer-events: none;
+    }
+    > li:hover {
+      // background-color: aqua;
+      .drama-cards {
+        pointer-events: initial;
+        // background: lime;
+      }
+      .scroll-arrow-wrap.active {
+        &.prev {
+          button.prev {
+            opacity: 1;
+            pointer-events: initial;
+          }
+        }
+        &.next {
+          button.next {
+            opacity: 1;
+            pointer-events: initial;
+          }
+        }
+      }
     }
   }
 }
