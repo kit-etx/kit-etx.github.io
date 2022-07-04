@@ -485,6 +485,8 @@
         function toggleArrowWrapDisplay() {
           if (totalWidth > windowWidth) {
             arrowWrap.classList.add('active');
+          } else {
+            arrowWrap.classList.remove('active');
           }
         }
         function toggleArrowDisplay() {
@@ -496,7 +498,7 @@
           }
           if (
             scrollPos + (cardWrap.offsetWidth - cardWrapPaddingLeft * 2) >=
-            totalWidth
+            totalWidth - cardWrapPaddingLeft
           ) {
             arrowWrap.classList.remove('next');
           } else {
