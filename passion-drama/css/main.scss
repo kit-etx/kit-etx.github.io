@@ -201,7 +201,8 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 5em;
+      // width: 5em;
+      width: 3em;
       // height: 3em;
       margin: auto;
       opacity: 0;
@@ -234,9 +235,16 @@ body {
         }
       }
       ion-icon {
-        font-size: 3em;
+        // font-size: 3em;
+        font-size: 2em;
         // opacity: 0.75;
       }
+      // @media only screen and (min-width: 1440px) {
+      //   width: 3em;
+      //   ion-icon {
+      //     font-size: 2em;
+      //   }
+      // }
     }
   }
 

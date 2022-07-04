@@ -7,14 +7,21 @@
 .drama-cards {
   position: relative;
   display: flex;
-  overflow-x: scroll;
-  // scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
   // scroll-snap-type: x proximity;
   gap: var(--gap);
+
   margin: -0em auto;
   padding-top: 7em;
   padding-bottom: 7em;
   padding-left: var(--max-wrap-px);
+
+  padding-inline: var(--max-wrap-px);
+  scroll-padding-inline: var(--max-wrap-px);
+  // padding-block: calc(var(--gap) / 2); /* make space for scrollbar and focus outline */
+
   // background-color: lime;
   // outline: 2px solid lawngreen;
 }
@@ -26,18 +33,22 @@
   z-index: 1;
   transition: all 0.2s ease;
 
-  // scroll-snap-align: start;
+  scroll-snap-align: start;
   min-width: var(--card-width);
   max-width: var(--card-width);
   flex: 1 1 0%;
 
-  &.padding-fix {
-    min-width: calc(var(--max-wrap-px) - var(--gap));
-    max-width: calc(var(--max-wrap-px) - var(--gap));
-    //   outline: 2px solid salmon;
-    @media only screen and (max-width: 568px) {
-      min-width: 0.001em;
-      max-width: 0.001em;
+  // End-padding fix
+  &:last-child {
+    &::after {
+      content: '';
+      position: absolute;
+
+      inline-size: var(--max-wrap-px);
+      block-size: 100%;
+
+      inset-block-start: 0;
+      inset-inline-end: calc(var(--max-wrap-px) * -1);
     }
   }
 

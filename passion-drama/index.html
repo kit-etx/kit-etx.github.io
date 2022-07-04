@@ -395,8 +395,6 @@
             </header>
             <ul class="drama-cards hide-scroll-bar">
               ${cards}
-              <!-- End-padding fix -->
-              <li class="drama-card padding-fix" aria-hidden="true"></li>
             </ul>
             <div class="scroll-arrow-wrap" id="scroll_${categoryAnchor}" aria-hidden="true">
               <button class="prev" tabindex="-1"><ion-icon name="chevron-back-outline"></ion-icon></button>
@@ -475,9 +473,9 @@
         let scrollPos = cardWrap.scrollLeft;
         let totalWidth = 0;
 
-        for (let i = 0; i < cards.length - 1; i++) {
+        for (let i = 0; i < cards.length; i++) {
           totalWidth += parseInt(cards[i].offsetWidth, 10);
-          if (i > 0 && i < cards.length - 1) {
+          if (i > 0 && i < cards.length) {
             totalWidth += 16; // 1em
           }
         }
@@ -498,7 +496,7 @@
           }
           if (
             scrollPos + (cardWrap.offsetWidth - cardWrapPaddingLeft * 2) >=
-            totalWidth - cardWrapPaddingLeft
+            totalWidth - cardWrapPaddingLeft * 2
           ) {
             arrowWrap.classList.remove('next');
           } else {
