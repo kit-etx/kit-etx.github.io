@@ -1417,10 +1417,8 @@ body.freeze .video-player {
   }
 }
 @media (hover: hover) and (min-width: 1024px) {
-  .drama-card .detail-box {
-    display: block;
-  }
   .drama-card:focus-within .detail-box {
+    pointer-events: initial;
     outline: 2px solid var(--pt-yellow-400);
     outline-offset: 0.25em;
   }
@@ -1428,6 +1426,7 @@ body.freeze .video-player {
     z-index: 2;
   }
   .drama-card:hover .detail-box, .drama-card:focus-within .detail-box {
+    pointer-events: initial;
     opacity: 1;
     -webkit-transform: scale(1.1) translateY(-webkit-calc(-50% + 1em));
        -moz-transform: scale(1.1) translateY(-moz-calc(-50% + 1em));
