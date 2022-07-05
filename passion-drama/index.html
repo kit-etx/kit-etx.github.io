@@ -114,7 +114,7 @@
 
     <section class="preview-modal" id="previewModal" aria-label="">
       <div class="modal-wrap">
-        <div class="modal-content">
+        <div class="modal-box">
           <button
             class="pt-btn close-btn"
             id="modalClose"
@@ -219,18 +219,29 @@
       const videoWrap = document.getElementById('videoWrap');
       const videoClose = document.getElementById('videoClose');
 
+      const dramaNav = document.getElementById('dramaNav');
       let lastKnownScrollPosition = 0;
       let ticking = false;
-      const dramaNav = document.getElementById('dramaNav');
 
-      function doSomething(scrollPos) {
-        // Do something with the scroll position
+      function windowOnScroll(scrollPos) {
         if (scrollPos > 0) {
           dramaNav.classList.add('scrolled');
         } else {
           dramaNav.classList.remove('scrolled');
         }
       }
+      document.addEventListener('scroll', function (e) {
+        lastKnownScrollPosition = window.scrollY;
+
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            windowOnScroll(lastKnownScrollPosition);
+            ticking = false;
+          });
+
+          ticking = true;
+        }
+      });
 
       function outputWithSeparator(valueObj, type) {
         if (valueObj.length > 0) {
@@ -363,7 +374,7 @@
                               ? // Logged-in user without permission / Guest user (for drama that is not for sale)
                                 `<div class="prime-exclusive">Prime限定</div>`
                               : // Logged-in user with permission (bought via PayPal / Prime User)
-                                `<button class="pt-btn play-now" aria-label="馬上收看">
+                                `<button class="pt-btn play-now" aria-label="馬上收看" data-id="${obj.id}">
                                   <ion-icon name="play"></ion-icon>
                                 </button>`
                           }
@@ -443,19 +454,6 @@
         closePreviewModal();
       });
 
-      document.addEventListener('scroll', function (e) {
-        lastKnownScrollPosition = window.scrollY;
-
-        if (!ticking) {
-          window.requestAnimationFrame(function () {
-            doSomething(lastKnownScrollPosition);
-            ticking = false;
-          });
-
-          ticking = true;
-        }
-      });
-
       const scrollArrowWrap = document.querySelectorAll('.scroll-arrow-wrap');
       scrollArrowWrap.forEach(function (arrowWrap) {
         const cardContainer = arrowWrap.parentNode;
@@ -524,7 +522,6 @@
           });
         };
         nextBtn.onclick = function (e) {
-          console.log('click');
           cardWrap.scrollTo({
             left: scrollPos + cardWrap.offsetWidth - cardWrapPaddingLeft * 2,
             behavior: 'smooth',
@@ -534,8 +531,9 @@
 
       const dramaCard = document.querySelectorAll('li.drama-card > a');
       dramaCard.forEach(function (card) {
+        const id = card.parentNode.getAttribute('data-id');
+
         function dramaDetail() {
-          const id = card.parentNode.getAttribute('data-id');
           lastOpenedItem = card;
 
           for (var key in dramaData) {
@@ -767,13 +765,36 @@
           }
         }
 
+        const playNowBtn = card.querySelector('.play-now');
+        let playNowBtnClicked = false;
+        if (playNowBtn) {
+          playNowBtn.addEventListener('click', (e) => {
+            playNowBtnClicked = true;
+            for (var key in dramaData) {
+              let obj = dramaData[key];
+              if (obj.id == id) {
+                const source = obj.ep[1].source;
+                setupVideoPlayer(source);
+              }
+            }
+          });
+        }
+
         card.addEventListener('click', (e) => {
           e.preventDefault();
+          if (playNowBtnClicked) {
+            playNowBtnClicked = false;
+            return;
+          }
           dramaDetail();
         });
         card.addEventListener('keydown', (e) => {
           if (e.key === 'Enter') {
             e.preventDefault();
+            if (playNowBtnClicked) {
+              playNowBtnClicked = false;
+              return;
+            }
             dramaDetail();
           }
         });
@@ -781,6 +802,7 @@
 
       function setupVideoPlayer(source) {
         if (source && source !== '') {
+          document.body.classList.add('freeze');
           videoWrap.innerHTML = '';
           videoWrap.insertAdjacentHTML(
             'beforeend',
@@ -796,6 +818,9 @@
         }
       }
       function closeVideoPlayer() {
+        if (!previewModal.classList.contains('active')) {
+          document.body.classList.remove('freeze');
+        }
         videoPlayer.classList.remove('fade-in');
         videoPlayer.classList.add('fade-out');
         videoPlayer.addEventListener(
@@ -812,8 +837,6 @@
         console.log('close video clicked');
         closeVideoPlayer();
       });
-
-      // openPreviewModal();
 
       window.addEventListener(
         'keydown',

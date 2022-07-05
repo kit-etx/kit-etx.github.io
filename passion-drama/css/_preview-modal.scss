@@ -52,9 +52,9 @@
     .img-box {
       position: relative;
       &::after {
-        content: "";
+        content: '';
         @include absolute(50%, 0, 0, 0, 1);
-        @include scrimGradient(hsl(0, 0%, 10%), "to top");
+        @include scrimGradient(hsl(0, 0%, 10%), 'to top');
         opacity: 1;
       }
     }
@@ -208,7 +208,7 @@
   }
 }
 
-.modal-content {
+.modal-box {
   position: relative;
 }
 
@@ -227,7 +227,7 @@
 .ep-list {
   li {
     & + li {
-      border-top: 1px solid var(--pt-gray-700);
+      border-top: 1px solid var(--pt-gray-800);
       // @media only screen and (max-width: 768px) {
       //   border-top: none;
       // }

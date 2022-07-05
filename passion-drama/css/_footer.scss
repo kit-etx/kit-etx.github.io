@@ -1,6 +1,7 @@
 .drama-footer {
   // margin: 0 0 3em;
-  margin: 3em 0;
+  // margin: 3em 0;
+  margin-bottom: 3em;
   .max-wrap > * {
     gap: 1em;
     font-size: 0.75em;
@@ -8,6 +9,7 @@
     a {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
     }
   }
   .max-wrap > * ~ * {

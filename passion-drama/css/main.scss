@@ -50,82 +50,19 @@ body {
 }
 
 @import './nav';
-
-.hero {
-  position: relative;
-  margin-top: -5.125em; // -82px (Nav height)
-  .img-box {
-    &::after {
-      content: '';
-      @include absolute(0, 0, 0, 0, 1);
-      @include scrimGradient(black, 'to right');
-      opacity: 0.75;
-    }
-  }
-  .img-box-inner {
-    background-image: url(../img/hero.jpg);
-    background-position: top center;
-    @media only screen and (max-width: 1024px) {
-      padding-top: 56.25%;
-    }
-  }
-  .text-box {
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    @include absolute(0, 0, 0, 0);
-    .title {
-      width: 25vw;
-    }
-    h2 {
-      font-size: 2em;
-      // font-size: 1.75vw;
-      font-weight: 500;
-    }
-    p {
-      max-width: 50vw;
-      display: -webkit-box;
-      line-clamp: 3;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-
-      margin-top: 0.25em;
-      // font-size: 1.2vw;
-      // font-size: 1vw;
-      font-size: 1.25em;
-      line-height: 1.5;
-
-      text-shadow: 0 0.125em 0.5em hsla(0, 0%, 0%, 0.5);
-      color: hsla(0, 0%, 100%, 0.875);
-    }
-  }
-  .btn-wrap {
-    display: flex;
-    gap: 0.75em;
-    margin-top: 1em;
-
-    // button {
-    // }
-  }
-}
+@import './hero';
 
 // .drama {
 //   overflow: hidden;
 // }
 .drama-wrap {
   padding: 3em 0;
+  @media (max-width: 1023px) {
+    padding: 2em 0;
+  }
+
   > li {
     position: relative;
-    // margin-bottom: 3em;
-    // &:last-child {
-    //   margin-bottom: 0;
-    // }
-    // outline: 1px solid firebrick;
-    // background: hsla(0, 100%, 62%, 0.2);
-    // &:nth-child(even) {
-    //   background: hsla(100, 100%, 62%, 0.2);
-    // }
   }
   // > li + li {
   //   margin-top: 3em;
@@ -134,8 +71,6 @@ body {
   header {
     position: relative;
     z-index: 1;
-    // position: sticky;
-    // left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -152,36 +87,15 @@ body {
     h3 {
       font-size: 1.375em;
       // font-weight: 500;
+      @media (max-width: 1023px) {
+        font-size: 1.25em;
+      }
     }
     a {
       gap: 0.125em;
       font-weight: 400;
       color: var(--pt-yellow-400);
-      // span {
-      // }
-      // ion-icon {
-      // }
     }
-
-    // .btn-wrap {
-    //   display: flex;
-    //   gap: 0.5em;
-    //   button {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     width: 2em;
-    //     height: 2em;
-    //   }
-    //   // &.prev {
-    //   // }
-    //   // &.next {
-    //   // }
-    //   ion-icon {
-    //     font-size: 1.5em;
-    //     opacity: 0.5;
-    //   }
-    // }
   }
 
   .scroll-arrow-wrap {
@@ -196,6 +110,9 @@ body {
       &:hover {
         background-color: hsla(0, 0%, 0%, 0.75);
         // background-color: lime;
+      }
+      @media only screen and (max-width: 1023px) {
+        top: 3.4375em;
       }
 
       display: flex;
@@ -252,6 +169,9 @@ body {
     margin-bottom: -4em;
     user-select: none;
     pointer-events: none;
+    @media (max-width: 1023px) {
+      margin-bottom: -5em;
+    }
   }
   @media (hover: hover) {
     .drama-cards {

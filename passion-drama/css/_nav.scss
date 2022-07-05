@@ -165,6 +165,8 @@
       .back-to-pt {
         // outline: 1px solid lime;
         // margin-top: 0.25em;
+
+        // margin: 0;
         margin-top: 0.5em;
         margin-left: 0.25em;
         @include fixed(0, null, null, 0);
