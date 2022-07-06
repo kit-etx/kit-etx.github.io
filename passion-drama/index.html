@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width,initial-scale=1,shrink-to-fit=no"
     />
-    <title>熱血時報｜熱血劇集台</title>
+    <title>熱血劇集台｜熱血時報</title>
     <link rel="stylesheet" href="css/main.min.css" />
   </head>
   <body>
@@ -75,36 +75,7 @@
 
     <main>
       <section class="hero" aria-label="熱血推介">
-        <div class="item">
-          <div class="img-box">
-            <div class="img-box-inner aspect-16-9_75"></div>
-          </div>
-          <div class="text-box">
-            <div class="max-wrap">
-              <!-- <h2>獨腳刀</h2> -->
-              <img class="title" src="img/title.svg" alt="獨腳刀" />
-              <p>
-                《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。<br />
-                世上最遠嘅距離，唔係天涯海角，而係一個口罩？<br />
-                一枝疫苗針，一條國際線，編織出嚟嘅，到底係一段段異地戀，抑或係一幕幕鬧劇？<br />
-                如果有人問你有幾「鐘」意香港？到底佢係考驗你嘅信念，還是考緊你中文？<br />
-                動盪歲月裡，每場戀愛都係一場戰疫，喺瘟仔瘟女嘅同時，竟然仲要抗疫！？<br />
-                《香港愛情：假裝瘟疫蔓延中》，一同見證瘟疫下的戀情。
-              </p>
-              <div class="btn-wrap">
-                <button class="pt-btn white lg fill">
-                  <ion-icon name="play"></ion-icon>播放
-                </button>
-                <button
-                  class="pt-btn medium lg fill transparent"
-                  id="featDetailToggle"
-                >
-                  <ion-icon name="information-circle-outline"></ion-icon>詳情
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="hero-wrap" id="heroWrap"></div>
       </section>
 
       <section class="drama" aria-label="">
@@ -208,6 +179,7 @@
         });
       });
 
+      const heroWrap = document.getElementById('heroWrap');
       const dramaWrap = document.getElementById('dramaWrap');
 
       const previewModal = document.getElementById('previewModal');
@@ -427,7 +399,6 @@
         previewModal.classList.add('active', 'fade-in');
         previewModal.querySelector('button').focus();
       }
-
       function closePreviewModal() {
         document.body.classList.remove('freeze');
         previewModal.classList.remove('fade-in');
@@ -443,7 +414,6 @@
           lastOpenedItem.focus();
         }
       }
-
       previewModal.addEventListener('click', (e) => {
         if (e.target === e.currentTarget) {
           closePreviewModal();
@@ -529,93 +499,89 @@
         };
       });
 
-      const dramaCard = document.querySelectorAll('li.drama-card > a');
-      dramaCard.forEach(function (card) {
-        const id = card.parentNode.getAttribute('data-id');
-
-        function dramaDetail() {
+      function dramaDetail(id, card) {
+        if (card) {
           lastOpenedItem = card;
+        }
 
-          for (var key in dramaData) {
-            let obj = dramaData[key];
+        for (var key in dramaData) {
+          let obj = dramaData[key];
 
-            if (obj.id == id) {
-              const dramaSubtitle = obj.subtitle
-                ? `<div class="subtitle">${obj.subtitle}</div>`
+          if (obj.id == id) {
+            const dramaSubtitle = obj.subtitle
+              ? `<div class="subtitle">${obj.subtitle}</div>`
+              : '';
+
+            const dramaTitle = obj.title ?? '';
+
+            const dramaFullTitle = dramaSubtitle
+              ? `${obj.subtitle}　${obj.title}`
+              : obj.title;
+
+            previewModal.setAttribute('aria-label', dramaFullTitle ?? '');
+
+            const dramaDesc = obj.desc
+              ? `<div class="desc">${obj.desc}</div>`
+              : '';
+
+            const dramaCast =
+              obj.host && obj.host.length > 0
+                ? `<div class="cast"><span>演員：</span>${outputWithSeparator(
+                    obj.host,
+                    'href'
+                  )}</div>`
                 : '';
 
-              const dramaTitle = obj.title ?? '';
-
-              const dramaFullTitle = dramaSubtitle
-                ? `${obj.subtitle}　${obj.title}`
-                : obj.title;
-
-              previewModal.setAttribute('aria-label', dramaFullTitle ?? '');
-
-              const dramaDesc = obj.desc
-                ? `<div class="desc">${obj.desc}</div>`
+            const dramaCrew =
+              obj.crew && obj.crew.length > 0
+                ? `<div class="crew">${outputWithSeparator(
+                    obj.crew,
+                    'crew'
+                  )}</div>`
                 : '';
 
-              const dramaCast =
-                obj.host && obj.host.length > 0
-                  ? `<div class="cast"><span>演員：</span>${outputWithSeparator(
-                      obj.host,
-                      'href'
-                    )}</div>`
-                  : '';
+            const dramaSponsor =
+              obj.sponsor && obj.sponsor.length > 0
+                ? `<div class="sponsor"><span>贊助：</span>${outputWithSeparator(
+                    obj.sponsor
+                  )}</div>`
+                : '';
 
-              const dramaCrew =
-                obj.crew && obj.crew.length > 0
-                  ? `<div class="crew">${outputWithSeparator(
-                      obj.crew,
-                      'crew'
-                    )}</div>`
-                  : '';
+            const dramaTitleSponsor =
+              obj.sponsor && obj.sponsor.length > 0
+                ? `<div class="title-sponsor"><span>冠名贊助：</span>${outputWithSeparator(
+                    obj.titleSponsor
+                  )}</div>`
+                : '';
 
-              const dramaSponsor =
-                obj.sponsor && obj.sponsor.length > 0
-                  ? `<div class="sponsor"><span>贊助：</span>${outputWithSeparator(
-                      obj.sponsor
-                    )}</div>`
-                  : '';
+            const dramaTag =
+              obj.tag && obj.tag.length > 0
+                ? `<div class="tag"><span>類型：</span>${outputWithSeparator(
+                    obj.tag
+                  )}</div>`
+                : '';
 
-              const dramaTitleSponsor =
-                obj.sponsor && obj.sponsor.length > 0
-                  ? `<div class="title-sponsor"><span>冠名贊助：</span>${outputWithSeparator(
-                      obj.titleSponsor
-                    )}</div>`
-                  : '';
+            const dramaYear = obj.year
+              ? `<div class="year"><span>年份：</span>${obj.year}</div>`
+              : '';
 
-              const dramaTag =
-                obj.tag && obj.tag.length > 0
-                  ? `<div class="tag"><span>類型：</span>${outputWithSeparator(
-                      obj.tag
-                    )}</div>`
-                  : '';
+            const dramaSchedule = obj.schedule
+              ? `<div class="info">逢星期${outputWithSeparator(
+                  obj.schedule.days
+                )}${obj.schedule.time ? `，${obj.schedule.time}` : ''}</div>`
+              : '';
 
-              const dramaYear = obj.year && obj.year.length > 0 ? obj.year : '';
+            const dramaLocation =
+              obj.location && obj.location.length > 0
+                ? `<div class="tag"><span>地點：</span>${obj.location}</div>`
+                : '';
 
-              const dramaSchedule =
-                obj.schedule && obj.schedule.length > 0
-                  ? `・Every ${obj.schedule.days}, ${obj.schedule.time}`
-                  : '';
+            getItemPrice(obj);
 
-              const dramaInfo =
-                dramaYear || dramaSchedule
-                  ? `<div class="info">${dramaYear}${dramaSchedule}</div>`
-                  : '';
-
-              const dramaLocation =
-                obj.location && obj.location.length > 0
-                  ? `<div class="tag"><span>地點：</span>${obj.location}</div>`
-                  : '';
-
-              getItemPrice(obj);
-
-              previewModalHeader.innerHTML = '';
-              previewModalHeader.insertAdjacentHTML(
-                'beforeend',
-                `<div class="img-box">
+            previewModalHeader.innerHTML = '';
+            previewModalHeader.insertAdjacentHTML(
+              'beforeend',
+              `<div class="img-box">
                   <div class="img-box-inner aspect-16-9_75"${
                     obj.coverImage
                       ? ` style="background-image:url(${obj.coverImage});"`
@@ -656,7 +622,7 @@
                 </div>
                 <div class="text-box">
                   <div class="main">
-                    ${dramaInfo}
+                    ${dramaSchedule}
                     ${dramaDesc}
                   </div>
                   <aside>
@@ -664,29 +630,30 @@
                       ${dramaCast}
                       ${dramaTitleSponsor}
                       ${dramaTag}
+                      ${dramaYear}
                     </div>
                     <a href="#metaDetail" id="metaDetailBtn" class="view-more pt-btn white sm border pill">
                       <ion-icon name="add"></ion-icon>更多資訊
                     </a>
                   </aside>
                 </div>`
-              );
+            );
 
-              if (Object.keys(obj.ep).length > 0) {
-                let epList = '';
-                for (var key in obj.ep) {
-                  const epData = obj.ep[key];
+            if (Object.keys(obj.ep).length > 0) {
+              let epList = '';
+              for (var key in obj.ep) {
+                const epData = obj.ep[key];
 
-                  const epTitle = epData.title ? epData.title : dramaTitle;
-                  const epDuration = epData.duration
-                    ? `<div class="duration">${epData.duration}</div>`
-                    : '';
-                  const epDesc = epData.desc
-                    ? `<div class="desc">${epData.desc}</div>`
-                    : '';
-                  const epSource = epData.source ? epData.source : '';
+                const epTitle = epData.title ? epData.title : dramaTitle;
+                const epDuration = epData.duration
+                  ? `<div class="duration">${epData.duration}</div>`
+                  : '';
+                const epDesc = epData.desc
+                  ? `<div class="desc">${epData.desc}</div>`
+                  : '';
+                const epSource = epData.source ? epData.source : '';
 
-                  const epContent = `<li class="ep">
+                const epContent = `<li class="ep">
                     <a href="#" data-id="${key}" data-source="${epSource}">
                       <div class="index">${key}</div>
                       <div class="img-box">
@@ -706,13 +673,13 @@
                       </div>
                     </a>
                   </li>`;
-                  epList += epContent;
-                }
+                epList += epContent;
+              }
 
-                previewModalContent.innerHTML = '';
-                previewModalContent.insertAdjacentHTML(
-                  'beforeend',
-                  `<div class="ep-header">
+              previewModalContent.innerHTML = '';
+              previewModalContent.insertAdjacentHTML(
+                'beforeend',
+                `<div class="ep-header">
                     <div class="title">集數</div>
                     <div class="season">第一季</div>
                   </div>
@@ -726,44 +693,99 @@
                       ${dramaSponsor}
                       ${dramaLocation}
                       ${dramaTag}
+                      ${dramaYear}
                     </div>
                   </footer>`
-                );
-              }
-
-              openPreviewModal();
+              );
             }
-          }
 
-          const epCardLinks = modalContent.querySelectorAll('li.ep > a');
-          epCardLinks.forEach(function (epCard) {
-            epCard.addEventListener('click', (e) => {
-              e.preventDefault();
-              const source = epCard.getAttribute('data-source');
-              setupVideoPlayer(source);
-            });
-          });
-
-          const modalPlayNow = previewModal.querySelector('#modalPlayNow');
-          if (modalPlayNow) {
-            modalPlayNow.addEventListener('click', (e) => {
-              const source = epCardLinks[0].getAttribute('data-source');
-              setupVideoPlayer(source);
-            });
-          }
-
-          const metaDetailBtn = previewModal.querySelector('#metaDetailBtn');
-          // console.log(metaDetailBtn);
-          if (metaDetailBtn) {
-            metaDetailBtn.addEventListener('click', (e) => {
-              const metaDetail = previewModal.querySelector('#metaDetail');
-              metaDetail.classList.remove('focus');
-              setTimeout(function () {
-                metaDetail.classList.add('focus');
-              }, 10);
-            });
+            openPreviewModal();
           }
         }
+
+        const epCardLinks = modalContent.querySelectorAll('li.ep > a');
+        epCardLinks.forEach(function (epCard) {
+          epCard.addEventListener('click', (e) => {
+            e.preventDefault();
+            const source = epCard.getAttribute('data-source');
+            setupVideoPlayer(source);
+          });
+        });
+
+        const modalPlayNow = previewModal.querySelector('#modalPlayNow');
+        if (modalPlayNow) {
+          modalPlayNow.addEventListener('click', (e) => {
+            const source = epCardLinks[0].getAttribute('data-source');
+            setupVideoPlayer(source);
+          });
+        }
+
+        const metaDetailBtn = previewModal.querySelector('#metaDetailBtn');
+        // console.log(metaDetailBtn);
+        if (metaDetailBtn) {
+          metaDetailBtn.addEventListener('click', (e) => {
+            const metaDetail = previewModal.querySelector('#metaDetail');
+            metaDetail.classList.remove('focus');
+            setTimeout(function () {
+              metaDetail.classList.add('focus');
+            }, 10);
+          });
+        }
+      }
+
+      const heroDrama = dramaData[0];
+      heroWrap.insertAdjacentHTML(
+        'beforeend',
+        `<div class="img-box">
+          <div class="img-box-inner aspect-16-9_75"${
+            heroDrama.coverImage
+              ? ` style="background-image:url(${heroDrama.coverImage});" title="${heroDrama.title}縮圖"`
+              : ''
+          }></div>
+        </div>
+        <div class="text-box">
+          <div class="max-wrap">
+            ${
+              heroDrama.titleArt
+                ? `<img class="title" src="${heroDrama.titleArt}" alt="${heroDrama.title}" />`
+                : `<h2>${heroDrama.title}</h2>`
+            }
+            ${
+              heroDrama.desc
+                ? `<p>${heroDrama.desc.replace(/\n/g, '<br/>')}</p>`
+                : ''
+            }
+            <div class="btn-wrap" data-id="${heroDrama.id}">
+              <button class="pt-btn white lg fill" id="heroPlayBtn">
+                <ion-icon name="play"></ion-icon>播放
+              </button>
+              <button
+                class="pt-btn medium lg fill transparent"
+                id="heroDetailBtn"
+              >
+                <ion-icon name="information-circle-outline"></ion-icon>詳情
+              </button>
+            </div>
+          </div>
+        </div>`
+      );
+      const heroPlayBtn = document.getElementById('heroPlayBtn');
+      const heroDetailBtn = document.getElementById('heroDetailBtn');
+      if (heroPlayBtn) {
+        heroPlayBtn.addEventListener('click', (e) => {
+          const source = heroDrama.ep[1].source;
+          setupVideoPlayer(source);
+        });
+      }
+      if (heroDetailBtn) {
+        heroDetailBtn.addEventListener('click', (e) => {
+          dramaDetail(heroDrama.id);
+        });
+      }
+
+      const dramaCard = document.querySelectorAll('li.drama-card > a');
+      dramaCard.forEach(function (card) {
+        const id = card.parentNode.getAttribute('data-id');
 
         const playNowBtn = card.querySelector('.play-now');
         let playNowBtnClicked = false;
@@ -786,7 +808,7 @@
             playNowBtnClicked = false;
             return;
           }
-          dramaDetail();
+          dramaDetail(id, card);
         });
         card.addEventListener('keydown', (e) => {
           if (e.key === 'Enter') {
@@ -795,7 +817,7 @@
               playNowBtnClicked = false;
               return;
             }
-            dramaDetail();
+            dramaDetail(id, card);
           }
         });
       });

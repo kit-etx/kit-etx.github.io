@@ -92,6 +92,12 @@
     background-color: hsla(0, 0%, 100%, 0.2);
     // background-color: lime;
   }
+  .name {
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
   .category {
     a {

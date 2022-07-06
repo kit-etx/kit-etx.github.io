@@ -15,7 +15,7 @@
     }
   }
   .img-box-inner {
-    background-image: url(../img/hero.jpg);
+    // background-image: url(../img/hero.jpg);
     background-position: top center;
     @media only screen and (max-width: 1440px) {
       padding-top: 56.25%;
@@ -34,6 +34,7 @@
     @include absolute(0, 0, 0, 0);
     .title {
       width: 25vw;
+      max-width: 30em;
       // outline: 2px solid orange;
     }
     h2 {
@@ -53,20 +54,31 @@
       // font-size: 1.2vw;
       // font-size: 1vw;
       font-size: 1.25em;
+      // font-size: 1.125em;
       line-height: 1.5;
 
       text-shadow: 0 0.125em 0.5em hsla(0, 0%, 0%, 0.5);
       color: hsla(0, 0%, 100%, 0.875);
+    }
+    @media only screen and (max-width: 1200px) {
+      .title {
+        width: 50vw;
+        max-width: 16em;
+      }
+      p {
+        font-size: 1em;
+      }
     }
     @media only screen and (max-width: 768px) {
       position: relative;
       margin-top: -12em;
       .title {
         width: 64vw;
+        max-width: 20em;
       }
       p {
         max-width: none;
-        font-size: 1em;
+        // font-size: 1em;
       }
     }
   }

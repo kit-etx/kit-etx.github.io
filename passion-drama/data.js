@@ -3,17 +3,31 @@ data = [
     id: 19,
     type: 'tv-drama',
     title: '獨腳刀',
-    titleArt: null,
+    titleArt: './img/title.svg',
     subtitle: null,
-    thumbnail: null,
-    coverImage: null,
+    thumbnail: './img/hero.jpg',
+    coverImage: './img/hero.jpg',
     desc: '《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。\n世上最遠嘅距離，唔係天涯海角，而係一個口罩？\n一枝疫苗針，一條國際線，編織出嚟嘅，到底係一段段異地戀，抑或係一幕幕鬧劇？\n如果有人問你有幾「鐘」意香港？到底佢係考驗你嘅信念，還是考緊你中文？\n動盪歲月裡，每場戀愛都係一場戰疫，喺瘟仔瘟女嘅同時，竟然仲要抗疫！？\n《香港愛情：假裝瘟疫蔓延中》，一同見證瘟疫下的戀情。',
-    schedule: null,
+    schedule: { days: ['二', '六'], time: '20:00' },
     price: null,
     primeAccess: true,
     ep: {
-      1: 'https://ptmirror.passiontimes.hk/cache/20190323_762/hls/012_A_HD_Mid.mp4_master.m3u8',
-      2: 'https://ptmirror.passiontimes.hk/cache/20190323_762/hls/013_B_HD_Mid.mp4_master.m3u8',
+      1: {
+        source:
+          'https://ptmirror.passiontimes.hk/cache/HK_Love_Story_Pretend_The_Plague_is_Spreading/hls/HK_Love_Story_Pretend_The_Plague_is_Spreading.mp4_master.m3u8',
+        thumbnail: 'https://www.passiontimes.hk/pt/hklove2021.jpg',
+        title: '假裝瘟疫蔓延中',
+        desc: '《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。',
+        duration: '2:08:41',
+      },
+      2: {
+        source:
+          'https://ptmirror.passiontimes.hk/cache/HK_Love_Story_Pretend_The_Plague_is_Spreading/hls/HK_Love_Story_Pretend_The_Plague_is_Spreading.mp4_master.m3u8',
+        thumbnail: 'https://www.passiontimes.hk/pt/hklove2021.jpg',
+        title: '假裝瘟疫蔓延中',
+        desc: '《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。',
+        duration: '2:08:41',
+      },
     },
     year: 2022,
     host: ['七六二'],
@@ -31,7 +45,7 @@ data = [
     titleArt: null,
     subtitle: null,
     thumbnail: 'https://www.passiontimes.hk/pt/hklove2021.jpg',
-    coverImage: 'https://www.passiontimes.hk/pt/hklove2021.jpg',
+    coverImage: './img/18-cover-image.jpg',
     desc: '《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。\n世上最遠嘅距離，唔係天涯海角，而係一個口罩？\n一枝疫苗針，一條國際線，編織出嚟嘅，到底係一段段異地戀，抑或係一幕幕鬧劇？\n如果有人問你有幾「鐘」意香港？到底佢係考驗你嘅信念，還是考緊你中文？\n動盪歲月裡，每場戀愛都係一場戰疫，喺瘟仔瘟女嘅同時，竟然仲要抗疫！？\n《香港愛情：假裝瘟疫蔓延中》，一同見證瘟疫下的戀情。',
     schedule: null,
     price: {
@@ -43,7 +57,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/HK_Love_Story_Pretend_The_Plague_is_Spreading/hls/HK_Love_Story_Pretend_The_Plague_is_Spreading.mp4_master.m3u8',
-        thumbnail: 'https://www.passiontimes.hk/pt/hklove2021.jpg',
+        thumbnail: './img/18-ep-thumbnail-01.jpg',
         title: '假裝瘟疫蔓延中',
         desc: '《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。',
         duration: '2:08:41',
@@ -67,7 +81,7 @@ data = [
     thumbnail: './img/17-thumbnail.jpg',
     coverImage: './img/17-thumbnail.jpg',
     desc: '陳秀慧原著小說，黃洋達改編音樂劇、法子擔綱演出，更推出超大尺度寫真！\n再加上 Eric Chow 編繪漫畫，七六二與阿 A 原創歌曲。\n音樂劇方面更有小夜、馬欣澄、Anson、阿 A 加盟參演！\n\n小說、舞臺、寫真、漫畫、音樂，集於一身！ 挑戰創意極限。',
-    schedule: { time: '22:00', days: ['Sunday'] },
+    schedule: null,
     price: {
       hkd: 200,
       caption: null,
@@ -131,7 +145,7 @@ data = [
     titleArt: null,
     subtitle: null,
     thumbnail: 'https://www.passiontimes.hk/pt/pt8th.jpg',
-    coverImage: 'https://www.passiontimes.hk/pt/pt8th.jpg',
+    coverImage: './img/16-cover-image.jpg',
     schedule: null,
     desc: '黃洋達小說《紅樓夢想》正式搬上舞台！\n發掘文學經典，全新劇本，全新創作廣東歌，重塑我們的紅樓夢想音樂劇！\n一個舞台，論盡香港情愛。',
     price: {
@@ -143,7 +157,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/pt8th/hls/紅樓夢想.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/16-ep-thumbnail-01.jpg',
         title: '全一節',
         desc: null,
         duration: null,
@@ -178,7 +192,7 @@ data = [
     titleArt: null,
     subtitle: null,
     thumbnail: 'https://www.passiontimes.hk/images/hklove1111.png',
-    coverImage: 'https://www.passiontimes.hk/images/hklove1111.png',
+    coverImage: './img/15-cover-image.jpg',
     schedule: null,
     desc: '一個舞台，論盡香港情愛。\n亂世中的香港，烽火裡的情鴛。動盪的年月裡，香港地每一場戀愛，都是一場奮戰。\n你愛香港，必須為所愛而戰，你要在香港求愛，更要賭上一切！\n熱血七週年呈獻，《台慶劇場：香港愛情》 黃洋達、阿 A、日新、大力、Anson、七六二、湘傑、Maki、Eric Chow、雞毛、法子、陳四、VVN、打令、阿悠，傾力演出！',
     price: {
@@ -190,7 +204,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/pt8th/hls/PT8th_hklove.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/15-ep-thumbnail-01.jpg',
         title: '全一節',
         desc: null,
         duration: '2:02:02',
@@ -232,7 +246,7 @@ data = [
     titleArt: null,
     subtitle: null,
     thumbnail: 'https://sc6.passiontimes.hk/cache/hklove929/thumbnail.jpg',
-    coverImage: 'https://sc6.passiontimes.hk/cache/hklove929/thumbnail.jpg',
+    coverImage: './img/14-cover-image.jpg',
     schedule: null,
     desc: '跟香港文化，談一場戀愛。\n黃洋達、阿 A、Eric、七六二，擕手共演，用歌曲作畫，同時用畫筆歌唱，在舞台上說唱一個關於香港的愛情故事。\n由安娜瑪德蓮娜唱到甜蜜蜜，再由紫釵記演到秋天的童話。\n這一晚，跨越香港不同時代談情說愛。',
     price: {
@@ -244,7 +258,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/hklove929/hls/20190929_003.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/14-ep-thumbnail-01.jpg',
         title: '全一節',
         desc: null,
         duration: '1:44:39',
@@ -266,7 +280,7 @@ data = [
     titleArt: null,
     subtitle: null,
     thumbnail: 'https://www.passiontimes.hk/pt/762.jpg',
-    coverImage: 'https://www.passiontimes.hk/pt/762.jpg',
+    coverImage: './img/13-cover-image.jpg',
     schedule: null,
     desc: '憑「粵語作曲法」獨步天下的《熱血時報》午間皇牌節目〈國立大台〉台柱七六二，今年除推出《七六二國立精選：香港冇事》之餘，更舉行了專輯同名個人演唱會！\n七六二每星期於節目以粵語即席譜寫歌曲，唱盡本地國際乃自於個人的大小事，由核事故防災教學、韓國風潮，到本地政經、傳媒道德，以及社交媒體與個人感受。\n2019 年大家一齊無視全線西冧，細聽七六二如何以好歌唱好香港！',
     price: {
@@ -278,7 +292,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/20190323_762/hls/012_A_HD_Mid.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/13-ep-thumbnail-01.jpg',
         title: '上半場',
         desc: null,
         duration: '1:02:24',
@@ -286,7 +300,7 @@ data = [
       2: {
         source:
           'https://ptmirror.passiontimes.hk/cache/20190323_762/hls/013_B_HD_Mid.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/13-ep-thumbnail-02.jpg',
         title: '下半場',
         desc: null,
         duration: '55:46',
@@ -308,7 +322,7 @@ data = [
     titleArt: null,
     subtitle: '棟篤·笑死朕2018',
     thumbnail: 'https://www.passiontimes.hk/pt/talkshow2018.jpg',
-    coverImage: 'https://www.passiontimes.hk/pt/talkshow2018.jpg',
+    coverImage: './img/12-cover-image.jpg',
     schedule: null,
     desc: '傳說，只要收集到七個港豬，宇宙中一切嘅衝突同糾紛，都可打和 super！一個因為沒有頭髮而無法變成超西的西人，來到香港，尋找七個港豬，新的傳說，就此展開！',
     price: {
@@ -320,7 +334,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/2018King/hls/part_a.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/12-ep-thumbnail-01.jpg',
         title: '上半場',
         desc: null,
         duration: '1:00:38',
@@ -328,7 +342,7 @@ data = [
       2: {
         source:
           'https://ptmirror.passiontimes.hk/cache/2018King/hls/part_b.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/12-ep-thumbnail-02.jpg',
         title: '下半場',
         desc: null,
         duration: '1:03:03',
@@ -349,8 +363,8 @@ data = [
     title: '金錢師說書劇場',
     titleArt: null,
     subtitle: '熱血時報 6 週年台慶',
-    thumbnail: 'https://www.passiontimes.hk/ps/6th.png',
-    coverImage: 'https://www.passiontimes.hk/ps/6th.png',
+    thumbnail: './img/11-thumbnail.jpg',
+    coverImage: './img/11-cover-image.jpg',
     schedule: null,
     desc: '熱血時報 6 週年台慶，黃洋達將《金錢師》搬上舞台，全台精英盡出，以說書、演唱、舞蹈、劇場的綜合表演方式，於舞台上嶄新演繹完全不同面貌的金錢師！',
     price: {
@@ -362,7 +376,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/pt6th/hls/6th_replay_v3.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/11-ep-thumbnail-01.jpg',
         title: '全一節',
         desc: null,
         duration: '2:01:59',
@@ -383,8 +397,8 @@ data = [
     title: '新九龍皇帝',
     titleArt: null,
     subtitle: '棟篤笑死朕',
-    thumbnail: 'https://sc6.passiontimes.hk/cache/ad/talkshow2012.jpg',
-    coverImage: 'https://sc6.passiontimes.hk/cache/ad/talkshow2012.jpg',
+    thumbnail: './img/10-thumbnail.jpg',
+    coverImage: './img/10-cover-image.jpg',
     schedule: null,
     desc: '2012 年，黃洋達監倉度橋，6 月在九展演講廳，舉辦 3 場「新九龍皇帝」talk show。\n「網民叫我做皇上，我又會喺九龍東參選，仲唔係九龍皇帝……嗱！唔係抽曾灶財水，但佢啲 graffiti（指墨寶）其實宣示緊主權，我哋咪用 graffiti 宣示番人民主權」。\nTalk show 取材自服刑期間的監倉生活，「廁所搞屎橋就聽得多，監倉橋都算係一個 point！」。',
     price: {
@@ -396,7 +410,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/dvd_720p/hls/KK_720p_001.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/10-ep-thumbnail-01.jpg',
         title: '全一節',
         desc: null,
         duration: '2:09:42',
@@ -417,8 +431,8 @@ data = [
     title: '花生將',
     titleArt: null,
     subtitle: '棟篤笑死朕',
-    thumbnail: 'https://sc6.passiontimes.hk/cache/ad/talkshow2013.jpg',
-    coverImage: 'https://sc6.passiontimes.hk/cache/ad/talkshow2013.jpg',
+    thumbnail: './img/09-thumbnail.jpg',
+    coverImage: './img/09-cover-image.jpg',
     schedule: null,
     desc: '2013 年，《熱血時報》一周年，你去咗邊？\n呢一年，黃洋達聯同陳秀慧，《百無禁技》主持阿 Frank，仲有神奇膠樂隊就去咗搞「花生將」talk show，唔止大派花生，仲大放笑彈，又唱又跳，為大家帶來一個輕鬆又愉快的晚上。\n想睇返佢哋當晚嘅精彩演出？\n細數政黨分裂，講到人格分裂；鳩做 TALK SHOW，大把野撈！《熱血時報》「花生將」，送禮自奉兩相宜！',
     price: {
@@ -430,7 +444,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/dvd_720p/hls/Peanut_720p_001.mp4_master.m3u8',
-        thumbnail: null,
+        thumbnail: './img/09-ep-thumbnail-01.jpg',
         title: '全一節',
         desc: null,
         duration: '1:49:35',
@@ -451,7 +465,7 @@ data = [
     title: '熱血時報5週年台慶匯演',
     titleArt: null,
     subtitle: null,
-    thumbnail: 'https://sc6.passiontimes.hk/cache/ad/5threplay.jpg',
+    thumbnail: './img/08-thumbnail.jpg',
     coverImage: 'https://sc6.passiontimes.hk/cache/ad/5threplay.jpg',
     schedule: null,
     desc: '2017 年 11 月 11 日，熱血時報迎來第 5 週年台慶，今年一眾主持人進佔九展 Music Zone 舉行台慶匯演。\n比起往年，今年的匯演更大規模、更專業、更精彩，一眾主持人施展渾身解數，與觀眾一同度過一個精彩的晚上。\n想重溫當晚精彩演出？想見證新一屆課金王登基及 Miss Hotdog 加冕？現在有得重溫喇！',

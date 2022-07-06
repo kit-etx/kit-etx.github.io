@@ -697,6 +697,13 @@ body.freeze .video-player {
   border-radius: 999rem;
   background-color: hsla(0deg, 0%, 100%, 0.2);
 }
+.drama-nav .name {
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+}
 .drama-nav .category a {
   color: white;
 }
@@ -880,7 +887,6 @@ body.freeze .video-player {
   }
 }
 .hero .img-box-inner {
-  background-image: url(../img/hero.jpg);
   background-position: top center;
 }
 @media only screen and (max-width: 1440px) {
@@ -918,6 +924,7 @@ body.freeze .video-player {
 }
 .hero .text-box .title {
   width: 25vw;
+  max-width: 30em;
 }
 .hero .text-box h2 {
   font-size: 2em;
@@ -936,6 +943,15 @@ body.freeze .video-player {
   text-shadow: 0 0.125em 0.5em hsla(0deg, 0%, 0%, 0.5);
   color: hsla(0deg, 0%, 100%, 0.875);
 }
+@media only screen and (max-width: 1200px) {
+  .hero .text-box .title {
+    width: 50vw;
+    max-width: 16em;
+  }
+  .hero .text-box p {
+    font-size: 1em;
+  }
+}
 @media only screen and (max-width: 768px) {
   .hero .text-box {
     position: relative;
@@ -943,10 +959,10 @@ body.freeze .video-player {
   }
   .hero .text-box .title {
     width: 64vw;
+    max-width: 20em;
   }
   .hero .text-box p {
     max-width: none;
-    font-size: 1em;
   }
 }
 .hero .btn-wrap {
@@ -1107,6 +1123,18 @@ body.freeze .video-player {
 .drama-card {
   --border-radius: 0.25em;
   --gap: 1em;
+}
+@media only screen and (max-width: 1024px) {
+  .drama-cards,
+.drama-card {
+    --gap: 0.75em;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .drama-cards,
+.drama-card {
+    --gap: 0.5em;
+  }
 }
 
 .drama-cards {
@@ -1270,6 +1298,11 @@ body.freeze .video-player {
 @media (max-width: 1023px) {
   .drama-card .card-badge {
     font-size: 0.875em;
+  }
+}
+@media (max-width: 768px) {
+  .drama-card .card-badge {
+    margin-bottom: 0.75em;
   }
 }
 .drama-card .detail-box {
