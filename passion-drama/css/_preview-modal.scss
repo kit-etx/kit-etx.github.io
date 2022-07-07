@@ -69,6 +69,27 @@
       padding: var(--card-py) var(--card-px);
     }
 
+    .feature {
+      gap: 1em;
+      &,
+      .header {
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        gap: 0.125em;
+      }
+      .subtitle {
+        font-size: 0.875em;
+        font-weight: 300;
+        letter-spacing: 0.125em;
+      }
+      .title {
+        font-size: 1.75em;
+        font-weight: 500;
+      }
+    }
+
     .text-box {
       display: flex;
       align-items: top;

@@ -9,6 +9,18 @@
     />
     <title>熱血劇集台｜熱血時報</title>
     <link rel="stylesheet" href="css/main.min.css" />
+
+    <meta name="og:title" property="og:title" content="熱血劇集台｜熱血時報" />
+    <meta
+      name="description"
+      content="PassionPrime 用戶可以隨意收看全部劇目！"
+    />
+    <meta
+      property="og:description"
+      content="PassionPrime 用戶可以隨意收看全部劇目！"
+    />
+    <meta property="og:image" content="./img/opengraph-fallback.jpg" />
+    <link rel="canonical" href="https://www.passiontimes.hk/pt/" />
   </head>
   <body>
     <nav class="drama-nav" id="dramaNav">
@@ -152,9 +164,9 @@
 
       const tvDramaDataArray = [19];
       const dramaDataArray = [18, 17, 16, 15, 14, 11, 5, 4, 3, 2];
-      const anniversaryDataArray = [17, 16, 15, 11, 8, 6];
+      const anniversaryDataArray = [17, 16, 15, 11, 8, 6, 9];
       const concertDataArray = [13, 7];
-      const standupDataArray = [12, 10, 9];
+      const standupDataArray = [12, 9, 10];
 
       const menuToggle = document.getElementById('menuToggle');
       const navLink = document.getElementById('navLink');
@@ -502,6 +514,8 @@
       function dramaDetail(id, card) {
         if (card) {
           lastOpenedItem = card;
+        } else {
+          lastOpenedItem = null;
         }
 
         for (var key in dramaData) {
@@ -589,8 +603,10 @@
                   }></div>
                 </div>
                 <div class="feature">
-                  ${dramaSubtitle}
-                  <div class="title">${dramaTitle}</div>
+                  <div class="header">
+                    ${dramaSubtitle}
+                    <div class="title">${dramaTitle}</div>
+                  </div>
                   <div class="action-btn">
                     ${
                       // Guest user (for drama that is for sale)
@@ -738,8 +754,8 @@
         'beforeend',
         `<div class="img-box">
           <div class="img-box-inner aspect-16-9_75"${
-            heroDrama.coverImage
-              ? ` style="background-image:url(${heroDrama.coverImage});" title="${heroDrama.title}縮圖"`
+            heroDrama.featImage
+              ? ` style="background-image:url(${heroDrama.featImage});" title="${heroDrama.title}縮圖"`
               : ''
           }></div>
         </div>
