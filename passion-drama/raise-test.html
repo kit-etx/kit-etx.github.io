@@ -1,0 +1,66 @@
+<section class="fs-modal raise-modal active fade-in">
+  <div class="modal-wrap">
+    <div class="modal-box">
+      <button class="pt-btn close-btn" id="modalClose" aria-label="返回">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <div class="host-info">
+        <div class="avatar img-box">
+          <div class="img-box-inner aspect-1-1"></div>
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="text-box">黃洋達</div>
+      </div>
+      <!-- <form method="POST" name="checkout"> -->
+      <form>
+        <input type="hidden" name="specificHost" value="陳五" />
+        <p>課金金額（HK$）</p>
+        <div class="raise-value">
+          <div class="value-option" id="value-option">
+            <a
+              href="#"
+              onclick="document.checkout.amount.value='100';"
+              class="active"
+            >
+              100
+            </a>
+            <a href="#" onclick="document.checkout.amount.value='250';">
+              250
+            </a>
+            <a href="#" onclick="document.checkout.amount.value='500';">
+              500
+            </a>
+            <a href="#" onclick="document.checkout.amount.value='1000';">
+              1000
+            </a>
+            <a href="#" onclick="document.checkout.amount.value='2500';">
+              2500
+            </a>
+            <a href="#" class="other">其他</a>
+          </div>
+
+          <input
+            value="100"
+            name="amount"
+            type="tel"
+            min="100"
+            class="numbersOnly raise"
+          />
+          <h6 class="caption">下限為HK$100</h6>
+        </div>
+        <button
+          onclick="document.checkout.submit()"
+          class="pt-btn primary lg fill"
+        >
+          立即課金
+        </button>
+        <button
+          onclick="document.checkout.submit()"
+          class="pt-btn primary lg border"
+        >
+          <ion-icon name="open-outline"></ion-icon>課金育成
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

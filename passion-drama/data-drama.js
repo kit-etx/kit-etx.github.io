@@ -21,7 +21,7 @@ data = [
           'https://ptmirror.passiontimes.hk/cache/HK_Love_Story_Pretend_The_Plague_is_Spreading/hls/HK_Love_Story_Pretend_The_Plague_is_Spreading.mp4_master.m3u8',
         thumbnail: './img/18-ep-thumbnail-01.jpg',
         title: '假裝瘟疫蔓延中',
-        desc: '《香港愛情》，三度公演！用舞台為你呈現「新常態」下的香港。',
+        desc: null,
         duration: '2:08:41',
       },
     },

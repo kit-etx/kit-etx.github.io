@@ -1524,7 +1524,7 @@ body.freeze .video-player {
   }
 }
 
-.preview-modal {
+.fs-modal {
   display: none;
   overflow-y: scroll;
   -webkit-box-align: center;
@@ -1543,29 +1543,30 @@ body.freeze .video-player {
   opacity: 0;
 }
 @media only screen and (max-width: 1024px) {
-  .preview-modal {
+  .fs-modal {
     --card-px: 1em;
   }
 }
-.preview-modal.active {
+.fs-modal.active {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
 }
-.preview-modal.fade-in {
+.fs-modal.fade-in {
   opacity: 1;
   -webkit-animation: fade-in 0.2s forwards;
      -moz-animation: fade-in 0.2s forwards;
           animation: fade-in 0.2s forwards;
 }
-.preview-modal.fade-out {
+.fs-modal.fade-out {
   opacity: 1;
   -webkit-animation: fade-out 0.2s forwards;
      -moz-animation: fade-out 0.2s forwards;
           animation: fade-out 0.2s forwards;
 }
+
 .preview-modal .meta {
   font-size: 0.875em;
   line-height: 1.5;
@@ -1890,7 +1891,10 @@ body.freeze .video-player {
      -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 1em;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  gap: 0.75em 1em;
   padding: var(--card-px) var(--card-px);
   -webkit-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -2009,18 +2013,31 @@ body.freeze .video-player {
      -moz-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
   gap: 1em;
 }
 .ep-list li a .text-box .main .title {
   font-weight: 500;
 }
+.ep-list li a .text-box .main .duration {
+  font-size: 0.875em;
+  font-variant-numeric: tabular-nums;
+  color: var(--pt-gray-400);
+}
 .ep-list li a .text-box .main .index {
   display: none;
 }
-.ep-list li a .text-box .desc {
+.ep-list li a .text-box + .desc {
+  display: none;
+  margin-top: 0;
+  min-width: 100%;
+}
+.ep-list li a .desc {
   margin-top: 0.25em;
   line-height: 1.5;
-  color: var(--pt-gray-400);
+  color: var(--pt-gray-200);
 }
 @media only screen and (max-width: 1024px) {
   .ep-list li a > .index {
@@ -2046,8 +2063,24 @@ body.freeze .video-player {
             flex: 6;
     width: 60%;
   }
+  .ep-list li a .text-box .main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0.25em;
+  }
   .ep-list li a .text-box .main .index {
     display: inline;
+  }
+  .ep-list li a .text-box .desc {
+    display: none;
+  }
+  .ep-list li a .text-box + .desc {
+    display: block;
   }
 }
 
