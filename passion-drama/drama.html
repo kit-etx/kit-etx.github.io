@@ -35,8 +35,8 @@
           <div class="nav-link" id="navLink">
             <div class="nav-link-inner">
               <ul class="category">
-                <li><a href="#" class="active">熱血劇集</a></li>
-                <li><a href="./drama.html">舞台演出</a></li>
+                <li><a href="./index.html">熱血劇集</a></li>
+                <li><a href="#" class="active">舞台演出</a></li>
               </ul>
 
               <div class="account">
@@ -141,7 +141,7 @@
     </footer>
 
     <!-- Not sure how to load `.json` properly, converted it to `.js` instead -->
-    <script type="text/javascript" src="data-tv-drama.js"></script>
+    <script type="text/javascript" src="data-drama.js"></script>
 
     <script type="text/javascript">
       let windowHeight = window.innerHeight;
@@ -154,7 +154,6 @@
 
       const dramaData = data;
 
-      const tvDramaDataArray = [19];
       const dramaDataArray = [18, 17, 16, 15, 14, 11, 5, 4, 3, 2];
       const anniversaryDataArray = [17, 16, 15, 11, 8, 6, 9];
       const concertDataArray = [13, 7];
@@ -254,10 +253,21 @@
         let categoryName = '';
         let categoryAnchor = '';
         switch (dataArray) {
-          case tvDramaDataArray:
-            // categoryName = '劇集';
-            categoryName = '最新上架';
-            categoryAnchor = 'tvDrama';
+          case dramaDataArray:
+            categoryName = '劇場';
+            categoryAnchor = 'drama';
+            break;
+          case anniversaryDataArray:
+            categoryName = '台慶';
+            categoryAnchor = 'anniversary';
+            break;
+          case concertDataArray:
+            categoryName = '演唱會';
+            categoryAnchor = 'concert';
+            break;
+          case standupDataArray:
+            categoryName = '棟篤笑';
+            categoryAnchor = 'standup';
             break;
           default:
             categoryName = '劇集';
@@ -376,7 +386,10 @@
         );
       }
 
-      printCategoryItems(tvDramaDataArray);
+      printCategoryItems(dramaDataArray);
+      printCategoryItems(standupDataArray);
+      printCategoryItems(anniversaryDataArray);
+      printCategoryItems(concertDataArray);
 
       let lastOpenedItem = null;
       function openPreviewModal() {

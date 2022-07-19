@@ -176,10 +176,8 @@ meter {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scroll-bar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @-webkit-keyframes outline-flash {
@@ -567,6 +565,7 @@ body.freeze .video-player {
           backdrop-filter: blur(3em) saturate(120%);
 }
 .drama-nav a {
+  position: relative;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -moz-inline-box;
@@ -584,6 +583,18 @@ body.freeze .video-player {
   -moz-transition-property: color, background-color, outline, border;
   transition-property: color, background-color, outline, border;
   outline-offset: 0.5em;
+  cursor: pointer;
+}
+.drama-nav a.active::before {
+  content: "";
+  position: absolute;
+  top: auto;
+  right: 0.75em;
+  bottom: 0;
+  left: 0.75em;
+  margin: auto;
+  height: 2px;
+  background-color: var(--pt-yellow-400);
 }
 .drama-nav a:focus {
   outline: 2px solid var(--pt-yellow-400);
@@ -608,6 +619,9 @@ body.freeze .video-player {
       -ms-flex: 1;
           flex: 1;
 }
+.drama-nav .main {
+  gap: 2em;
+}
 .drama-nav .nav-link {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -615,22 +629,13 @@ body.freeze .video-player {
       -ms-flex: 1;
           flex: 1;
 }
-.drama-nav .nav-link .back-to-pt {
-  margin-left: auto;
-}
-.drama-nav .nav-link .back-to-pt a {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -moz-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  font-weight: normal;
-  background-color: transparent;
-}
 .drama-nav .logo {
-  width: 150px;
+  width: 120px;
   height: 50px;
-  background-color: var(--pt-yellow-400);
+  background-image: url(../img/pt-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 .drama-nav ul {
   display: -webkit-box;
@@ -662,6 +667,12 @@ body.freeze .video-player {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 1em;
+  margin-left: auto;
+}
+@media only screen and (max-width: 768px) {
+  .drama-nav .account {
+    margin-left: 0;
+  }
 }
 .drama-nav .user {
   display: -webkit-box;
@@ -698,7 +709,7 @@ body.freeze .video-player {
   background-color: hsla(0deg, 0%, 100%, 0.2);
 }
 .drama-nav .name {
-  max-width: 100px;
+  max-width: 200px;
   overflow: hidden;
   white-space: nowrap;
   -o-text-overflow: ellipsis;
@@ -725,7 +736,7 @@ body.freeze .video-player {
   -webkit-backdrop-filter: none;
           backdrop-filter: none;
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .drama-nav .nav-link {
     display: block;
     overflow-y: scroll;
@@ -803,20 +814,6 @@ body.freeze .video-player {
        -moz-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-  .drama-nav .nav-link .back-to-pt {
-    margin-top: 0.5em;
-    margin-left: 0.25em;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  .drama-nav .nav-link .back-to-pt a {
-    gap: 0.25em;
-    margin: 0.875em;
-    padding: 0.5em 1em;
-    font-size: 0.75em;
-    border-radius: 0.25em;
   }
   .drama-nav .nav-link .account {
     text-align: center;
@@ -923,6 +920,11 @@ body.freeze .video-player {
   left: 0;
 }
 .hero .text-box .title {
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 25vw;
   max-width: 30em;
 }
@@ -937,7 +939,7 @@ body.freeze .video-player {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-top: 0.25em;
+  margin-top: 1em;
   font-size: 1.25em;
   line-height: 1.5;
   text-shadow: 0 0.125em 0.5em hsla(0deg, 0%, 0%, 0.5);
@@ -952,7 +954,7 @@ body.freeze .video-player {
     font-size: 1em;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 981px) {
   .hero .text-box {
     position: relative;
     margin-top: -12em;
