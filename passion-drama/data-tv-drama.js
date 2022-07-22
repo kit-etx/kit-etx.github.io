@@ -6,8 +6,8 @@ data = [
     titleArt: './img/19-title-art.svg',
     subtitle: null,
     thumbnail: './img/19-thumbnail-temp.jpg',
-    coverImage: './img/hero.jpg',
-    featImage: './img/hero.jpg',
+    coverImage: './img/19-cover-image.jpg',
+    featImage: './img/19-feat-image.jpg',
     desc: '為報殺父之仇，阿占加入魔刀門接近仇人身邊。但在恩怨感情交錯之間，下手變得愈來愈困難。',
     schedule: { days: ['日'], time: '21:00' },
     price: null,
@@ -16,7 +16,7 @@ data = [
       1: {
         source:
           'https://ptmirror.passiontimes.hk/cache/HK_Love_Story_Pretend_The_Plague_is_Spreading/hls/HK_Love_Story_Pretend_The_Plague_is_Spreading.mp4_master.m3u8',
-        thumbnail: './img/hero.jpg',
+        thumbnail: './img/19-ep-thumbnail-01.jpg',
         title: '第一集',
         desc: '跆拳鬼刀在四大刀王決戰中身受重傷。三年後，他的女兒來到仇人面前，要求加入對方門下。',
         duration: null,
